@@ -1,0 +1,24 @@
+{
+  "name": "electron-browser",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^23.1.0"
+  },
+  "dependencies": {
+    "@electron/remote": "^2.0.9",
+    "draggabilly": "^3.0.0",
+    "electron-tabs": "^1.0.1",
+    "ev-emitter": "^2.1.2",
+    "get-size": "^3.0.0",
+    "jquery": "^3.6.3",
+    "unidragger": "^3.0.1",
+    "unipointer": "^2.4.0"
+  }
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Wanroi</title>
+    <meta name="description" content="Chrome-style tabs in HTML/CSS/JS.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <link href="assets/demo/css/demo.css" rel="stylesheet">
+    <link href="assets/css/chrome-tabs.css" rel="stylesheet">
+    <link href="assets/css/chrome-tabs-dark-theme.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+</head>
+
+<body>
+    <button data-add-tab>Add new tab</button>
+    <div class="chrome-tabs" style="--tab-content-margin: 9px">
+        <div class="chrome-tabs-content">
+            <div class="chrome-tab" active>
+                <div class="chrome-tab-dividers"></div>
+                <div class="chrome-tab-background">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <symbol id="chrome-tab-geometry-left" viewBox="0 0 214 36">
+                                <path d="M17 0h197v36H0v-2c4.5 0 9-3.5 9-8V8c0-4.5 3.5-8 8-8z" />
+                            </symbol>
+                            <symbol id="chrome-tab-geometry-right" viewBox="0 0 214 36">
+                                <use xlink:href="#chrome-tab-geometry-left" />
+                            </symbol>
+                            <clipPath id="crop">
+                                <rect class="mask" width="100%" height="100%" x="0" />
+                            </clipPath>
+                        </defs><svg width="52%" height="100%">
+                            <use xlink:href="#chrome-tab-geometry-left" width="214" height="36"
+                                class="chrome-tab-geometry" />
+                        </svg>
+                        <g transform="scale(-1, 1)"><svg width="52%" height="100%" x="-100%" y="0">
+                                <use xlink:href="#chrome-tab-geometry-right" width="214" height="36"
+                                    class="chrome-tab-geometry" />
+                            </svg></g>
+                    </svg>
+                </div>
+                <div class="chrome-tab-content" data-tab-value="tab_1" id="tab_1">
+                    <!-- style="background-image: url('demo/images/google-favicon.ico')" -->
+                    <div class="chrome-tab-favicon"></div>
+                    <div class="chrome-tab-title">New Tab</div>
+                    <div class="chrome-tab-drag-handle"></div>
+                    <div class="chrome-tab-close"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="chrome-tabs-bottom-bar"></div>
+        <div class="chrome-tabs-optional-shadow-below-bottom-bar"></div> 
+    </div>
+    <input style="width:100%;margin-left: 20px;margin-right: 20px;"></input>
+    <!-- <div class="mock-browser-content">
+        <div class="buttons">
+          <button data-theme-toggle>Toggle dark theme</button>
+          <button data-add-tab>Add new tab</button>
+          <button data-add-background-tab>Add tab in the background</button>
+          <button data-remove-tab>Remove active tab</button>
+        </div>
+      </div> -->
+
+      <div class="tab-content">
+        <div class="tabs__tab active" id="tab_content_1" data-tab-info>
+            <webview id="webview_1" src="https://wanroi.com" style="display:inline-flex;width:100%; height:600px"></webview>
+        </div>
+    </div>
+    <script src="https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"></script>
+    <script src="./src/browser-tabs.js"></script>
+    <script src="./src/browser-tabs-handler.js"></script>
+</body>
+
+</html>
