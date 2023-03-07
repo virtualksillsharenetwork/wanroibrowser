@@ -27,10 +27,10 @@ function createWindow() {
         }
     });
     remote.enable(mainWindow.webContents)
-    mainWindow.removeMenu(true);
+    //mainWindow.removeMenu(true);
     mainWindow.loadFile('index.html');
     //mainWindow.webContents.openDevTools();
-    menu = getMenu(mainWindow.webContents);
+    // menu = getMenu(mainWindow.webContents);
 }
 
 app.whenReady().then(() => {
@@ -50,11 +50,11 @@ app.on('window-all-closed', () => {
 
 ipcMain.on(`display-app-menu`, function (e, args) {
     if (mainWindow) {
-        menu.popup({
-            window: mainWindow,
-            x: args.x,
-            y: args.y
-        });
+        // menu.popup({
+        //     window: mainWindow,
+        //     x: args.x,
+        //     y: args.y
+        // });
     }
 });
 //window controls
