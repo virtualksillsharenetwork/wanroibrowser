@@ -15,7 +15,7 @@ class WebViewHandler {
     }
     setupEvents() {
         this.webview.addEventListener('did-finish-load', (e) => {
-              
+              console.log(this.webview)
         });
         this.webview.addEventListener('page-title-updated', (e) => {
             var webview = this.webview;

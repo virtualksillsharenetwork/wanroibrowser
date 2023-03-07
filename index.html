@@ -32,37 +32,7 @@
         <div class="chrome-tab-wrapper">
         <div class="chrome-tab-content-section" style="-webkit-app-region: no-drag;">
             <div class="chrome-tabs-content">
-                <div class="chrome-tab" active>
-                    <div class="chrome-tab-dividers"></div>
-                    <div class="chrome-tab-background">
-                        <svg version="1.1" xmlns="http://www.w3.org/2000/svg">
-                            <defs>
-                                <symbol id="chrome-tab-geometry-left" viewBox="0 0 214 36">
-                                    <path d="M17 0h197v36H0v-2c4.5 0 9-3.5 9-8V8c0-4.5 3.5-8 8-8z" />
-                                </symbol>
-                                <symbol id="chrome-tab-geometry-right" viewBox="0 0 214 36">
-                                    <use xlink:href="#chrome-tab-geometry-left" />
-                                </symbol>
-                                <clipPath id="crop">
-                                    <rect class="mask" width="100%" height="100%" x="0" />
-                                </clipPath>
-                            </defs><svg width="52%" height="100%">
-                                <use xlink:href="#chrome-tab-geometry-left" width="214" height="36"
-                                    class="chrome-tab-geometry" />
-                            </svg>
-                            <g transform="scale(-1, 1)"><svg width="52%" height="100%" x="-100%" y="0">
-                                    <use xlink:href="#chrome-tab-geometry-right" width="214" height="36"
-                                        class="chrome-tab-geometry" />
-                                </svg></g>
-                        </svg>
-                    </div>
-                    <div class="chrome-tab-content" data-tab-value="tab_1" id="tab_1" >
-                        <div class="chrome-tab-favicon" style="background-image: url('./assets/icons/venroi.png')"></div>
-                        <div class="chrome-tab-title">New Tab</div>
-                        <div class="chrome-tab-drag-handle"></div>
-                        <div class="chrome-tab-close"></div>
-                    </div>
-                </div>
+                
             </div>
             <button class="add-new-chrome-tab" data-add-tab id="add-tab" style="-webkit-app-region: no-drag;">
                 <svg xmlns="http://www.w3.org/2000/svg" height="30px" viewBox="0 0 24 24" width="30px">
@@ -95,7 +65,7 @@
         </div>
         <div class="global_search">
             <span class="info"><img src="./assets/icons/info.png" /></span>
-            <input type="text" placeholder="Search Wanroi or type a URL" />
+            <input id="mainSearch" type="text" placeholder="Search Wanroi or type a URL" />
             <div class="sharenbookmark">
                 <span class="share"><img src="./assets/icons/share.png" /></span>
                 <span class="bookmark"><img src="./assets/icons/star.png" /></span>
@@ -154,15 +124,17 @@
       </div> -->
 
     <div class="tab-content">
-        <div class="tabs__tab active" id="tab_content_1" data-tab-info>
-            <webview nodeintegration nodeintegrationinsubframes id="webview_1" src="https://search.wanroi.com/" style="display:inline-flex;width:100%; height:100vh"></webview>
-        </div>
+        <!-- <div class="eb-view" data-eb_view_id="0">
+            <webview nodeintegration="" nodeintegrationinsubframes="" id="webview0" src="https://search.wanroi.com/" style="display:inline-flex; width:100vh; height:100vh"></webview>
+        </div> -->
     </div>
     <script src="https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"></script>
-    <script src="./src/menu-handler.js"></script>
+    <script src="./new/ebrowser.js"></script>
+    <script src="./new/renderer.js"></script>
+    <!-- <script src="./src/menu-handler.js"></script>
     <script src="./src/webview-handler.js"></script>
     <script src="./src/browser-tabs.js"></script>
-    <script src="./src/browser-tabs-handler.js"></script>
+    <script src="./src/browser-tabs-handler.js"></script> -->
 </body>
 
 </html>

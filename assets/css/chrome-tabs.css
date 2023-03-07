@@ -494,12 +494,15 @@
 }
 
 .tab-content {
-  font-size: 30px;
-  font-family: sans-serif;
-  font-weight: bold;
-  color: rgb(82, 75, 75);
-  height: calc(100% - 130px);
-  display: flex;
+	height: 100%;
+	display: flex;
+}
+.tab-content .eb-view {
+	display: none;
+	flex: 1;
+}
+.tab-content .eb-view.selected {
+	display: flex;
 }
 body,
 html{
