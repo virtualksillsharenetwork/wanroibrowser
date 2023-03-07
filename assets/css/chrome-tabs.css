@@ -3,8 +3,8 @@
   position: relative;
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 12px;
-  height: 46px;
-  padding: 8px 3px 4px 3px;
+  height: 40px;
+  padding: 0px 3px 4px 3px;
   background: #dee1e6;
   border-radius: 5px 5px 0 0;
   overflow: hidden;
@@ -17,10 +17,12 @@
   position: relative;
   width: 100%;
   height: 100%;
+  flex: 0;
+  display: flex;
+  justify-content: flex-start;
 }
+
 .chrome-tabs .chrome-tab {
-  position: absolute;
-  left: 0;
   height: 36px;
   width: 240px;
   border: 0;
@@ -40,28 +42,8 @@
   left: var(--tab-content-margin);
   right: var(--tab-content-margin);
 }
-.chrome-tabs .chrome-tab .chrome-tab-dividers,
-.chrome-tabs .chrome-tab .chrome-tab-dividers::before,
-.chrome-tabs .chrome-tab .chrome-tab-dividers::after {
+.chrome-tabs .chrome-tab .chrome-tab-dividers {
   pointer-events: none;
-}
-.chrome-tabs .chrome-tab .chrome-tab-dividers::before,
-.chrome-tabs .chrome-tab .chrome-tab-dividers::after {
-  content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  width: 1px;
-  background: #a9adb0;
-  opacity: 1;
-  transition: opacity 0.2s ease;
-}
-.chrome-tabs .chrome-tab .chrome-tab-dividers::before {
-  left: 0;
-}
-.chrome-tabs .chrome-tab .chrome-tab-dividers::after {
-  right: 0;
 }
 .chrome-tabs .chrome-tab:first-child .chrome-tab-dividers::before,
 .chrome-tabs .chrome-tab:last-child .chrome-tab-dividers::after {
@@ -92,6 +74,160 @@
 .chrome-tabs .chrome-tab:not([active]) .chrome-tab-background {
   transition: opacity 0.2s ease;
   opacity: 0;
+}
+.global_search {
+  width: 100%;
+  overflow: hidden;
+  text-align: center;
+  position: relative;
+}
+.global_search input {
+    width: 100%;
+    border: 1px solid #dedede;
+    border-radius: 17px;
+    padding: 7px 7px 7px 40px;
+    outline: none;
+    box-sizing: border-box;
+}
+.global_search input:focus{
+  border-color: #4285f4;
+  border-width: 2px;
+}
+.global_search .info {
+  position: absolute;
+  height: 28px;
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  transition: all ease-out .2s;
+  left: 3px;
+  top: 1px;
+}
+.global_search .info:hover,
+.sharenbookmark span:hover{
+  background-color: #c0c3c8;
+}
+.global_search .info img{
+ max-width: 16px;
+}
+.extensions svg {
+  font-size: 10px;
+  height: 20px;
+  width: 20px;
+}
+.icons-section img {
+  width: 20px;
+  padding: 4px;
+  border-radius: 50%;
+}
+.icons-section .reload img {
+  width: 15px;
+}
+.icons-section img:hover {
+  background: #eeeeee;
+}
+.sharenbookmark img {
+  height: 15px;
+}
+.sharenbookmark span {
+  border-radius: 20px;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  transition: all ease-out .2s;
+  height: 30px;
+}
+.sharenbookmark {
+  position: absolute;
+  right: 0;
+  top: 0;
+  display: flex;
+  align-items: flex-start;
+}
+.icons-section,
+.extensions {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+.chrome-extensions {
+  display: flex;
+  align-items: center;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  transition: all ease-out .2s;
+}
+.chrome-user {
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  transition: all ease-out .2s;
+}
+.chrome-menu svg {
+  display: flex;
+  align-items: center;
+  height: 16px;
+  width: 16px;
+  margin-top: 4px;
+}
+.chrome-user svg {
+  margin-top: 4px;
+}
+.chrome-extensions:hover{
+  border-color: #c0c3c8;
+}
+.chrome-user:hover{
+  border-color: #c0c3c8;
+}
+.tabs-extensions-section .extensions {
+  max-width: 300px;
+  width: fit-content;
+}
+.chrome-extensions .extension {
+  width: 23px;
+  height: 23px;
+  border-radius: 100%;
+  border: 1px solid transparent;
+  padding: 3px;
+  overflow: hidden;
+  box-sizing: border-box;
+  transition: all ease-out .2s;
+  margin-right: 2px;
+}
+.chrome-extensions .extension:hover {
+  background: #EEEEEE;
+}
+.chrome-extensions .extension svg {
+  max-width: 100%;
+}
+.tabs-extensions-section {
+  display: flex;
+  align-items: center;
+  column-gap: 20px;
+  padding: 5px 10px;
+  background-color: #fff;
+}
+.bookmarks-section {
+  background-color: #fff;
+  display: flex;
+  padding: 8px 10px;
+}
+.bookmarks-section .bookmarks-item img {
+  max-width: 15px;
+  width: auto;
+  margin-right: 5px;
+}
+.bookmarks-section .bookmarks-item {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+  border: 1px solid transparent;
+  border-radius: 50px;
+  transition: all ease-out .2s;
+  padding: 3px 5px;
+  cursor: pointer;
+}
+.bookmarks-section .bookmarks-item:hover{
+  background-color: #eee;
 }
 @media (hover: hover) {
   .chrome-tabs .chrome-tab:not([active]):hover {
@@ -126,10 +262,12 @@
   position: relative;
   flex-shrink: 0;
   flex-grow: 0;
-  height: 16px;
-  width: 16px;
-  background-size: 16px;
+  height: 20px;
+  width: 20px;
+  background-size: contain;
   margin-left: 4px;
+  background-repeat: no-repeat;
+  background-position: center;
 }
 .chrome-tabs .chrome-tab[is-small] .chrome-tab-favicon {
   margin-left: 0;
@@ -241,7 +379,7 @@
 .chrome-tabs .chrome-tabs-bottom-bar {
   position: absolute;
   bottom: 0;
-  height: 4px;
+  height: 5px;
   left: 0;
   width: 100%;
   background: #fff;
@@ -256,15 +394,89 @@
   background-repeat: repeat-x;
   background-position: 0% 0%;
 }
+.chrome-tab-content-section {
+  display: flex;
+  max-width: calc(100% - 200px);
+}
+.add-new-chrome-tab {
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  margin-left: 8px;
+}
+.add-new-chrome-tab:hover svg{
+  background-color: #c0c3c8;
+}
+.add-new-chrome-tab svg {
+  background: transparent;
+  border: none;
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+  transition: all ease-out .2s;
+  color: #383b3e;
+}
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .chrome-tabs-optional-shadow-below-bottom-bar {
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='2' height='2' viewBox='0 0 2 2'><rect x='0' y='0' width='2' height='1' fill='rgba(0, 0, 0, .27)'></rect></svg>");
   }
 }
 .chrome-tabs .chrome-tab {
-  width: 258px
+  width: 258px;
+  transform: none !important;
+  margin: 0px -9px 0;
 }
-
+.browser-controls {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 150px;
+  width: 100%;
+  /* margin-right: 10px; */
+}
+.browser-controls span {
+  padding: 8px 0px;
+  border-radius: 1px;
+  transition: all ease-out .1s;
+  text-align: center;
+  width: 50px;
+}
+.browser-controls span:hover{
+  background-color: #c7cacf;
+}
+.browser-controls span.close:hover{
+  background-color: #e81123;
+}
+.browser-controls .close:hover svg{
+  fill: #fff;
+}
+.browser-controls span.resize{
+  /* padding-bottom: 6px; */
+}
+.browser-controls .minimize svg {
+  /* width: 14px; */
+  display: inline-block;
+  vertical-align: middle;
+}
+.browser-controls .resize img {
+  /* width: 16px; */
+}
+.browser-controls img, .browser-controls svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+.browser-controls .close svg {
+  /* width: 10px; */
+  /* height: 10px; */
+}
+.chrome-tab-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.chrome-tabs-content>div:first-child {
+  margin-left: 0;
+}
 .chrome-tabs .chrome-tab:nth-child(1) {
   transform: translate3d(0px, 0, 0)
 }
@@ -286,6 +498,18 @@
   font-family: sans-serif;
   font-weight: bold;
   color: rgb(82, 75, 75);
+  height: calc(100% - 130px);
+  display: flex;
+}
+body,
+html{
+  overflow: hidden;
+}
+.tabs__tab{
+  flex: 1;
+}
+.tabs__tab webview {
+    height: 100% !important;
 }
 
 .tabs {
@@ -305,4 +529,12 @@
   background: rgb(29, 185, 112);
   cursor: pointer;
   color: black;
+}
+@media only screen and (max-width: 767px){
+  /* .chrome-tab-content-section{
+    max-width: 60%;
+  } */
+  .sharenbookmark{
+    display: none;
+  }
 }

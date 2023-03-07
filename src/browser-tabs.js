@@ -153,7 +153,7 @@ class ChromeTabs {
 
     this.tabEls.forEach((tabEl, i) => {
       const contentWidth = tabContentWidths[i]
-      const width = contentWidth + (2 * TAB_CONTENT_MARGIN)
+      const width = contentWidth + (5 * TAB_CONTENT_MARGIN)
 
       tabEl.style.width = width + 'px'
       tabEl.removeAttribute('is-small')
@@ -184,7 +184,7 @@ class ChromeTabs {
         <div class="chrome-tab-background">
           <svg version="1.1" xmlns="http://www.w3.org/2000/svg"><defs><symbol id="chrome-tab-geometry-left" viewBox="0 0 214 36"><path d="M17 0h197v36H0v-2c4.5 0 9-3.5 9-8V8c0-4.5 3.5-8 8-8z"/></symbol><symbol id="chrome-tab-geometry-right" viewBox="0 0 214 36"><use xlink:href="#chrome-tab-geometry-left"/></symbol><clipPath id="crop"><rect class="mask" width="100%" height="100%" x="0"/></clipPath></defs><svg width="52%" height="100%"><use xlink:href="#chrome-tab-geometry-left" width="214" height="36" class="chrome-tab-geometry"/></svg><g transform="scale(-1, 1)"><svg width="52%" height="100%" x="-100%" y="0"><use xlink:href="#chrome-tab-geometry-right" width="214" height="36" class="chrome-tab-geometry"/></svg></g></svg>
         </div>
-        <div class="chrome-tab-content" data-tab-value="tab_${i}" id="tab_${i}" >
+        <div class="chrome-tab-content" data-tab-value="tab_${i}" id="tab_${i}">
           <div class="chrome-tab-favicon"></div>
           <div class="chrome-tab-title"></div>
           <div class="chrome-tab-drag-handle"></div>

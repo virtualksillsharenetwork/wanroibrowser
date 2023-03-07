@@ -1,24 +1,42 @@
 {
-  "name": "electron-browser",
+  "name": "Wanroi",
   "version": "1.0.0",
-  "description": "",
+  "description": "Browser Application",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron-forge start",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "pack": "electron-builder --dir",
+    "dist": "electron-builder"
   },
-  "author": "",
+  "author": "Itsan Soft",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^23.1.0"
+    "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-rpm": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
+    "electron": "^23.1.0",
+    "electron-builder": "^23.6.0"
   },
   "dependencies": {
     "@electron/remote": "^2.0.9",
     "draggabilly": "^3.0.0",
+    "electron-squirrel-startup": "^1.0.0",
     "electron-tabs": "^1.0.1",
     "ev-emitter": "^2.1.2",
     "get-size": "^3.0.0",
     "jquery": "^3.6.3",
     "unidragger": "^3.0.1",
     "unipointer": "^2.4.0"
+  },
+  "build": {
+    "appId": "com.wanroi.browser",
+    "mac": {
+      "category": "wanroi.app.browser.private"
+    },
+    "icon": "assets/icons/wanroi.png"
   }
 }

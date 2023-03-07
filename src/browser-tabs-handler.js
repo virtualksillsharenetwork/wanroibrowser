@@ -1,70 +1,58 @@
 const { app, BrowserWindow, BrowserView } = require('@electron/remote')
+const {ipcRenderer} = require('electron');
+var history_file = path.join(__dirname, "/history.json");
 
-let i = 2;
-
-const tabs = document.querySelectorAll('[data-tab-value]')
-
-
-tabs.forEach(tab => {
-    tab.addEventListener('click', () => {
-        const target = document.getElementById(tab.dataset.tabValue);
-        const webviews = document.querySelectorAll('[data-tab-info]')
-        webviews.forEach(tabInfo => {
-            tabInfo.classList.remove('active')
-        })
-        var content_index = tab.dataset.tabValue.split("_");
-        const webview = document.getElementById(`tab_content_${content_index[1]}`);
-        webview.classList.add('active');
-        target.classList.add('active');
-
-    })
-})
-
-
-var allTabs = document.querySelector('.chrome-tabs')
+var webviewHandler = new WebViewHandler();
 var chromeTabs = new ChromeTabs();
 
-chromeTabs.init(allTabs)
+let i = 2;
+var activeWebView = document.querySelector('#webview_1');
+var allTabs = document.querySelector('.chrome-tabs');
 
+webviewHandler.changeWebView(activeWebView);
+
+chromeTabs.init(allTabs);
 allTabs.addEventListener('activeTabChange', ({ detail }) => { })
 allTabs.addEventListener('tabAdd', ({ detail }) => { })
-allTabs.addEventListener('tabRemove', ({ detail }) => { })
+allTabs.addEventListener('tabRemove', ({ detail }) => {
 
-document.querySelector('button[data-add-tab]').addEventListener('click', _ => {
+    var tabID = $(detail.tabEl).children(".chrome-tab-content").data('tab-value');
+    var content_index = tabID.split("_");
+    $(detail.tabEl).remove();
+    $(`#tab_content_${content_index[1]}`).remove();
+    if((content_index[1]-1) > 0){
+        $($(`#tab_${content_index[1]-1}`).parent(".chrome-tab")[0]).addClass('active');
+        $($(`#tab_content_${content_index[1]-1}`)[0]).addClass('active');
+    }
+});
+
+$(document).on("click", ".chrome-tab-content", function (e) {
+
+        $('.tab-content div.active').removeClass('active');
+        $(this).addClass('active');
+        var content_index = $(this).data('tab-value').split("_")
+        $(`#tab_content_${content_index[1]}`).addClass('active');
+        if(!$(`#tab_content_${content_index[1]}`).children('#history')){
+            //selected webview
+            webviewHandler.changeWebView($('#webview_' + content_index[1]));
+        }
+
+});
+
+
+$(document).on("click", "#add-tab", function () {
     let tab_number = i++;
     chromeTabs.addTab({
         title: 'New Tab',
         favicon: false,
         tab_no: tab_number,
-    })
-    var tabcontent = document.querySelector('.tab-content');
-    var tabs = tabcontent.innerHTML;
-    tabcontent.innerHTML = tabs + `
-        <div class="tabs__tab" id="tab_content_${tab_number}" data-tab-info>
-            <webview id="webview_${tab_number}" src="https://wanroi.com" style="display:inline-flex;width:100%; height:600px"></webview>
-        </div>`;
-    var latestTab = document.getElementById(`tab_${tab_number}`);
-    const webviews = document.querySelectorAll('[data-tab-info]')
-        webviews.forEach(tabInfo => {
-            tabInfo.classList.remove('active')
-        })
-    const webview = document.getElementById(`tab_content_${tab_number}`);
-    webview.classList.add('active');
-    latestTab.addEventListener('click', (e) => {
-        e.stopImmediatePropagation();
-        e.stopPropagation();
-        const tabValue = e.target.parentElement.dataset.tabValue;
-        const target = document.getElementById(tabValue);
-        const webviews = document.querySelectorAll('[data-tab-info]')
-        webviews.forEach(tabInfo => {
-            tabInfo.classList.remove('active')
-        })
-        var content_index = tabValue.split("_");
-        const webview = document.getElementById(`tab_content_${content_index[1]}`);
-        webview.classList.add('active');
-        target.classList.add('active');
-    })
-})
+    });
+    $('.tab-content div.active').removeClass('active');
+    $('.tab-content').append(`
+    <div class="tabs__tab active" id="tab_content_${tab_number}" data-tab-info>
+        <webview nodeintegration nodeintegrationinsubframes id="webview_${tab_number}" src="https://search.wanroi.com" style="display:inline-flex;width:100%; height:100vh"></webview>
+    </div>`);
+});
 
 // document.querySelector('button[data-add-background-tab]').addEventListener('click', _ => {
 //     chromeTabs.addTab({
@@ -96,4 +84,39 @@ window.addEventListener('keydown', (event) => {
             favicon: false
         })
     }
-})
+});
+ipcRenderer.on(`history-clicked`, function(e, args) {
+    openTab('history');
+});
+
+function openTab(tabName){
+
+    if(fs.existsSync(history_file)){
+        fs.readFile(history_file, 'utf8', function readFileCallback(err, data){
+            if (err){
+                console.log(err);
+            } else {
+                console.log(JSON.parse(data))
+            JSON.parse(data).table.forEach(element => {
+                $('#history ul').append(
+                    `<li>${element.url}</li>`
+                )
+            });
+        }});
+    }
+    console.log(history)
+    let tab_number = i++;
+    chromeTabs.addTab({
+        title: 'History',
+        favicon: false,
+        tab_no: tab_number,
+    });
+    $('.tab-content div.active').removeClass('active');
+    $('.tab-content').append(`
+    <div class="tabs__tab active" id="tab_content_${tab_number}" data-tab-info>
+        <div id="${tabName}">
+            <ul>
+            </ul>
+        </div>
+    </div>`);
+}
