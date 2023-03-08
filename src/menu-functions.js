@@ -30,6 +30,10 @@ function isWindowMaximized() {
     ipcRenderer.send(`is-window-maximized`);
 }
 
+function openIncognitoWindow() {
+    ipcRenderer.send(`open-incognito-window`);
+}
+
 module.exports = {
     getCurrentWindow,
     openMenu,
@@ -39,4 +43,5 @@ module.exports = {
     maxUnmaxWindow,
     isWindowMaximized,
     closeWindow,
+    openIncognitoWindow,
 };

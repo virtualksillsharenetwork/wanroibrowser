@@ -31,3 +31,123 @@
 .chrome-tabs.chrome-tabs-dark-theme .chrome-tabs-bottom-bar {
   background: #323639;
 }
+
+
+.dark-mode {
+  background-color: black !important;
+  color: white !important;
+}
+
+.tabs-extensions-section {
+  background-color: #323639;
+  color: white
+}
+.bookmarks-section {
+  background-color: #323639;
+  color: white
+}
+.bookmarks-section .bookmarks-item:hover{
+  background-color: #4a4d51;
+
+}
+.global_search input {
+  background-color: #202124;
+  color: white;
+  border: 1px solid #202124;
+}
+.chrome-extensions:hover{
+  border-color: #454649;
+}
+.chrome-user:hover{
+  border-color: #454649;
+}
+.add-new-chrome-tab:hover svg{
+  background-color: #454649;
+}
+.global_search .info:hover,
+.sharenbookmark span:hover{
+  background-color: #454649;
+}
+.icons-section img:hover {
+  background: #454649;
+}
+.chrome-extensions:hover{
+  border-color: #454649;
+}
+.chrome-user:hover{
+  border-color: #454649;
+}
+.chrome-extensions .extension:hover {
+  background: #454649;
+}
+.bookmarks-section .bookmarks-item:hover{
+  background-color: #454649;
+}
+
+@media (hover: hover) {
+  .chrome-tabs .chrome-tab .chrome-tab-close:hover {
+    background-color: #454649;
+  }
+  .chrome-tabs .chrome-tab .chrome-tab-close:hover:active {
+    background-color: #454649;
+  }
+}
+@media not all and (hover: hover) {
+  .chrome-tabs .chrome-tab .chrome-tab-close:active {
+    background-color: #454649;
+  }
+}
+.browser-controls span:hover{
+  background-color: #454649;
+}
+.browser-controls .close:hover svg{
+  fill: #454649;
+}
+.add-new-chrome-tab svg {
+  color: #D6D7D7;
+}
+.icons-section i:hover {
+  background: #27282b;
+}
+
+.incognito-pic {
+  display: flex;
+  align-items: center;
+  border-radius: 50px;
+  transition: all ease-out .2s;
+}
+
+.incognito-pic img {
+  margin-top: 4px;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #292A2D;
+  min-width: 240px;
+  right: 0px;
+  left: auto;
+ 
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  
+}
+
+.dropdown-content button {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+  background: transparent;
+  all: unset;
+}
+
+.dropdown-content button:hover {background-color: #414245;}
+
+.dropdown:hover .dropdown-content {display: block;}

@@ -70,15 +70,15 @@ $(document).on("click", "#add-tab", function () {
 //     chromeTabs.removeTab(chromeTabs.activeTabEl)
 // })
 
-// document.querySelector('button[data-theme-toggle]').addEventListener('click', _ => {
-//     if (el.classList.contains('chrome-tabs-dark-theme')) {
-//         document.documentElement.classList.remove('dark-theme')
-//         el.classList.remove('chrome-tabs-dark-theme')
-//     } else {
-//         document.documentElement.classList.add('dark-theme')
-//         el.classList.add('chrome-tabs-dark-theme')
-//     }
-// })
+document.querySelector('button[data-theme-toggle]').addEventListener('click', _ => {
+    if (el.classList.contains('chrome-tabs-dark-theme')) {
+        document.documentElement.classList.remove('dark-theme')
+        el.classList.remove('chrome-tabs-dark-theme')
+    } else {
+        document.documentElement.classList.add('dark-theme')
+        el.classList.add('chrome-tabs-dark-theme')
+    }
+})
 
 window.addEventListener('keydown', (event) => {
     if (event.ctrlKey && event.key === 't') {

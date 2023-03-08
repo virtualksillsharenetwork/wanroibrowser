@@ -45,7 +45,23 @@ function getActiveWebView() {
 	return window[activeWebView];
 }
 
+function openIncognitoButton() {
+            const { ipcRenderer } = require('electron'); 
+
+            ipcRenderer.send('open-incognito-window'); 
+}
+
 // document.getElementById('btn-toggle-theme').addEventListener('click', function () {
 // 	// Then toggle (add/remove) the .dark-theme class to the body
 // 	document.body.classList.toggle('dark-theme');
 // });
+document.querySelector('button[data-theme-toggle]').addEventListener('click', _ => {
+    //alert("Working");
+    if (el.classList.contains('chrome-tabs-dark-theme')) {
+        // document.documentElement.classList.remove('dark-theme')
+        el.classList.remove('chrome-tabs-dark-theme')
+    } else {
+        // document.documentElement.classList.add('dark-theme')
+        el.classList.add('chrome-tabs-dark-theme')
+    }
+})

@@ -9,6 +9,7 @@
   border-radius: 5px 5px 0 0;
   overflow: hidden;
 }
+
 .chrome-tabs * {
   box-sizing: inherit;
   font: inherit;
@@ -102,12 +103,13 @@
   transition: all ease-out .2s;
   left: 3px;
   top: 1px;
+  margin-top: 1px;
 }
 .global_search .info:hover,
 .sharenbookmark span:hover{
-  background-color: #c0c3c8;
+  background-color: #CECED0;
 }
-.global_search .info img{
+.global_search .info i{
  max-width: 16px;
 }
 .extensions svg {
@@ -115,19 +117,19 @@
   height: 20px;
   width: 20px;
 }
-.icons-section img {
+.icons-section i {
   width: 20px;
   padding: 4px;
   border-radius: 50%;
 }
-.icons-section .reload img {
+.icons-section .reload i {
   width: 15px;
 }
-.icons-section img:hover {
-  background: #eeeeee;
+.icons-section i:hover {
+  background: #CECED0;
 }
-.sharenbookmark img {
-  height: 15px;
+.sharenbookmark i {
+  height: 13px;
 }
 .sharenbookmark span {
   border-radius: 20px;
@@ -135,6 +137,7 @@
   box-sizing: border-box;
   transition: all ease-out .2s;
   height: 30px;
+  margin-top: 1px;
 }
 .sharenbookmark {
   position: absolute;
@@ -178,6 +181,7 @@
 .chrome-user:hover{
   border-color: #c0c3c8;
 }
+
 .tabs-extensions-section .extensions {
   max-width: 300px;
   width: fit-content;
@@ -211,7 +215,7 @@
   display: flex;
   padding: 8px 10px;
 }
-.bookmarks-section .bookmarks-item img {
+.bookmarks-section .bookmarks-item i {
   max-width: 15px;
   width: auto;
   margin-right: 5px;
@@ -414,7 +418,7 @@
   width: 30px;
   border-radius: 100%;
   transition: all ease-out .2s;
-  color: #383b3e;
+  color: #3F4B50;
 }
 @media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2/1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
   .chrome-tabs-optional-shadow-below-bottom-bar {
@@ -458,10 +462,10 @@
   display: inline-block;
   vertical-align: middle;
 }
-.browser-controls .resize img {
+.browser-controls .resize i {
   /* width: 16px; */
 }
-.browser-controls img, .browser-controls svg {
+.browser-controls i, .browser-controls svg {
   display: inline-block;
   vertical-align: middle;
 }

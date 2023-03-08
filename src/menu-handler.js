@@ -3,6 +3,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const minimizeButton = document.getElementById("minimize-btn");
     const maxUnmaxButton = document.getElementById("max-unmax-btn");
     const closeButton = document.getElementById("close-btn");
+    const openIncognitoButton = document.getElementById("open-incognito-window");
   
     menuButton.addEventListener("click", e => {
       // Opens menu at (x,y) coordinates of mouse click on the hamburger icon.
@@ -11,6 +12,9 @@ window.addEventListener("DOMContentLoaded", () => {
   
     minimizeButton.addEventListener("click", e => {
       window.minimizeWindow();
+    });
+    openIncognitoButton.addEventListener("click", e => {
+      window.openIncognitoWindow();
     });
   
     maxUnmaxButton.addEventListener("click", e => {

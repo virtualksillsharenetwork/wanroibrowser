@@ -8,7 +8,7 @@ require('./env');
 
 let mainWindow = null;
 
-function createWindow() {
+function createWindow(loadFile) {
     mainWindow = new BrowserWindow({
         width: 800,
         height: 600,
@@ -19,22 +19,23 @@ function createWindow() {
         minHeight:600,
         minWidth:800,
         webPreferences: {
+            
             preload: path.join(__dirname, "/src/preload.js"),
             webviewTag: true,
             nodeIntegration: true,
             contextIsolation: false,
-            enableRemoteModule: true
+            enableRemoteModule: true,
         }
     });
     remote.enable(mainWindow.webContents)
     //mainWindow.removeMenu(true);
-    mainWindow.loadFile('index.html');
+    mainWindow.loadFile(loadFile);
     //mainWindow.webContents.openDevTools();
     // menu = getMenu(mainWindow.webContents);
 }
 
 app.whenReady().then(() => {
-    createWindow();
+    createWindow('index.html');
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
             createWindow();
@@ -84,3 +85,7 @@ ipcMain.on(`close-window`, function (e, args) {
 ipcMain.on(`is-window-maximized`, function (e, args) {
     return mainWindow.isMaximized();
 });
+ipcMain.on(`open-incognito-window`, function (e, args) {
+    createWindow('index-incognito.html');
+});
+

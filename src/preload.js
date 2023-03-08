@@ -7,6 +7,7 @@ const {
   maxUnmaxWindow,
   isWindowMaximized,
   closeWindow,
+  openIncognitoWindow,
 } = require("./menu-functions");
 
 window.addEventListener("DOMContentLoaded", () => {
@@ -17,4 +18,5 @@ window.addEventListener("DOMContentLoaded", () => {
   window.maxUnmaxWindow = maxUnmaxWindow;
   window.isWindowMaximized = isWindowMaximized;
   window.closeWindow = closeWindow;
+  window.openIncognitoWindow = openIncognitoWindow;
 });
