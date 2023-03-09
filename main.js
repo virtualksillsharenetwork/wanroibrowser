@@ -79,19 +79,23 @@ ipcMain.on(`display-app-menu`, function (e, args) {
 });
 //window controls
 ipcMain.on(`minimize-window`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
     if (window.minimizable) {
         window.minimize();
     }
 });
 ipcMain.on(`maximize-window`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
     if (window.maximizable) {
         window.maximize();
     }
 });
 ipcMain.on(`unmaximize-window`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
     window.unmaximize();
 });
 ipcMain.on(`max-unmax-window`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
     if (window.isMaximized()) {
         window.unmaximize();
     } else {
@@ -103,6 +107,7 @@ ipcMain.on(`close-window`, function (e, args) {
     window.close();
 });
 ipcMain.on(`is-window-maximized`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
     return window.isMaximized();
 });
 ipcMain.on(`open-incognito-window`, function (e, args) {
