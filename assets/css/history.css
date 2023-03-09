@@ -95,7 +95,7 @@ html, body {
 }
 .history-sidebar-tabs .menuitem.active{
   background: rgb(232, 240, 252);
-  color: rgb(175 26 186);
+  color: rgb(26, 115,232);
 }
 .history-sidebar-tabs .menuitem:hover{
   background-color: rgba(232, 234, 237, 1)
@@ -208,7 +208,7 @@ html, body {
   color: #9d9999;
 }
 .mobile-menu-activator a:hover {
-  color: #af1abe;
+  color: rgb(26, 115,232);
 }
 .mobile-menu-activator a {
   text-decoration: none;
