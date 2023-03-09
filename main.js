@@ -19,8 +19,7 @@ function createWindow(loadFile) {
         minHeight:600,
         minWidth:800,
         webPreferences: {
-            
-            preload: path.join(__dirname, "/src/preload.js"),
+            preload: path.join(__dirname, "/new/preloads/preload.js"),
             webviewTag: true,
             nodeIntegration: true,
             contextIsolation: false,

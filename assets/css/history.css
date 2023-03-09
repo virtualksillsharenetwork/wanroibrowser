@@ -1,0 +1,270 @@
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  font-family: Roboto, 'Segoe UI', Tahoma, sans-serif;
+}
+.venroi-history-header {
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+}
+.venroi-history-logo {
+  max-width: 300px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 30px
+}
+.venroi-history-logo h1 {
+  font-size: 22px;
+  font-weight: 500;
+  margin-left: 15px;
+  margin-top: 0;
+  margin-bottom: 0;
+  color: rgb(32, 33, 36);
+}
+.venroi-history-search-wrapper {
+  max-width: 600px;
+  width: 100%;
+  background-color: #f1f3f4;
+  border-radius: 50px;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+}
+.venroi-history-search-wrapper input{
+  -webkit-appearance: none;
+  background: 0 0;
+  border: none;
+  cursor: var(--cr-toolbar-search-field-cursor,text);
+  font: inherit;
+  outline: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  font-size: 13px;
+}
+.venroi-history-logo img {
+  max-height: 35px;
+}
+.venroi-history-search-wrapper button:hover {
+  background-color: #e2e4e5;
+}
+.venroi-history-search-wrapper button {
+  border: none;
+  padding: 5px;
+  border-radius: 50px;
+  margin-right: 15px;
+  transition: all ease-out .2s;
+}
+.venroi-history-body-container {
+  display: flex;
+  padding-top: 10px;
+  height: 100vh;
+}
+.venroi-history-left-sidebar {
+  max-width: 250px;
+  width: 100%;
+  margin-right: 80px;
+}
+.history-sidebar-tabs .menuitem{
+  box-sizing: border-box;
+  display: flex;
+  font-size: 14px;
+  font-weight: 500;
+  margin-inline-end: 2px;
+  min-height: 40px;
+  overflow: hidden;
+  padding-block-end: 10px;
+  padding-block-start: 10px;
+  padding-inline-start: 23px;
+  position: relative;
+  text-decoration: none;
+  border-end-end-radius: 100px;
+  border-start-end-radius: 100px;
+  transition: all ease-out .2s;
+  color: #333;
+  line-height: 20px;
+  align-items: center;
+}
+.history-sidebar-tabs .menuitem i {
+  margin-right: 15px;
+  font-size: 16px;
+}
+.history-sidebar-tabs .menuitem.active{
+  background: rgb(232, 240, 252);
+  color: rgb(175 26 186);
+}
+.history-sidebar-tabs .menuitem:hover{
+  background-color: rgba(232, 234, 237, 1)
+}
+.shadowHeader {
+  box-shadow: 0px 0px 5px 2px #b8b8b8;
+}
+.venroi-history-right-content {
+  flex: 1;
+  height: calc(100% - 100px);
+  overflow-y: auto;
+  padding: 20px 5px 5px;
+}
+.history-card {
+  border-radius: 10px;
+  width: 85%;
+  box-shadow: 0px 0px 4px 0px #c2c3c4;
+  margin-bottom: 20px;
+}
+.history-card h5 {
+  margin: 0;
+  padding: 20px 15px;
+  border-bottom: 1px solid #dedede;
+  font-size: 15px;
+  font-weight: 500;
+  color: #47484B;
+}
+.history-item{
+  padding: 10px 15px;
+}
+.history-item,
+.history-item>div {
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+.checkbox-container {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 12px;
+  cursor: pointer;
+  font-size: 22px;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.checkbox-container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 12px;
+  width: 12px;
+  border: 2px solid #333;
+}
+.checkbox-container input:checked ~ .checkmark {
+  background-color: rgba(26, 115, 232, 1);
+  border-color: transparent;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+.checkbox-container input:checked ~ .checkmark:after {
+  display: block;
+}
+.checkbox-container .checkmark:after {
+  left: 3px;
+  top: 0px;
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+.check-time {
+  margin-right: 30px;
+}
+.fav-title img {
+  max-height: 25px;
+  max-width: 25px;
+  width: auto;
+  height: auto;
+  margin-right: 20px;
+  display: inline-block;
+  vertical-align: middle;
+}
+.history-item .options {
+  flex: 1;
+  justify-content: flex-end;
+}
+.fav-title .title a {
+  text-decoration: none;
+  color: rgb(32, 33,36);
+  margin-right: 20px;
+}
+.history-item .url {
+  color: #9d9999;
+}
+.mobile-menu-activator a:hover {
+  color: #af1abe;
+}
+.mobile-menu-activator a {
+  text-decoration: none;
+  color: #333;
+  font-size: 18px;
+  font-weight: 500;
+}
+.mobile-menu-activator {
+  padding-left: 20px;
+  display: none;
+  margin-right: 40px;
+}
+.active-mobile-menu .venroi-history-left-sidebar {
+  left: 0;
+}
+.active-mobile-menu  .mobile-menu-shadow{
+  display: block;
+}
+.mobile-view {
+  display: none;
+}
+.mobile-menu-shadow {
+  height: 100%;
+  width: 100%;
+  background: rgb(32, 33, 36);
+  position: fixed;
+  top: 0;
+  opacity: .6;
+  display: none;
+}
+@media only screen and (max-width: 1024px){
+  .desktop-view {
+    display: none;
+  }
+  .mobile-view {
+    padding: 10px;
+    display: flex;
+  }
+  .mobile-menu-activator{
+    display: block;
+  }
+  .history-card{
+    width: 98%;
+    margin: auto auto 20px auto;
+  }
+  .venroi-history-search-wrapper{
+    max-width: 50%;
+  }
+  .venroi-history-left-sidebar{
+      height: 100%;
+      margin: 0;
+      position: fixed;
+      background: #fff;
+      z-index: 9;
+      top: 0;
+      left: -300px;
+      transition: all ease-out .2s; 
+  }
+}
