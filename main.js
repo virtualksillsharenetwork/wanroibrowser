@@ -1,23 +1,23 @@
 const remote = require('@electron/remote/main')
 remote.initialize()
-const { app, ipcMain, BrowserWindow } = require('electron')
+const { app, ipcMain,Menu, BrowserWindow } = require('electron')
+const {getMenuTemplate} = require('./src/menus/menu-templates')
 const path = require('path');
-const { getMenu } = require('./src/menus/main-menu');
-let menu = null;
 require('./env');
 
-let mainWindow = null;
+let allWindows = new Set();
 
-function createWindow(loadFile) {
-    mainWindow = new BrowserWindow({
+
+function createWindow(winTit,loadFile) {
+    let window = new BrowserWindow({
         width: 800,
         height: 600,
         webviewTag: true,
         frame: false,
         icon: path.join(__dirname, "/assets/icons/venroi.png"),
-        center:true,
-        minHeight:600,
-        minWidth:800,
+        center: true,
+        minHeight: 600,
+        minWidth: 800,
         webPreferences: {
             webviewTag: true,
             nodeIntegration: true,
@@ -25,66 +25,77 @@ function createWindow(loadFile) {
             enableRemoteModule: true,
         }
     });
-    mainWindow.maximize()
-    remote.enable(mainWindow.webContents)
-    //mainWindow.removeMenu(true);
-    mainWindow.loadFile(loadFile);
-    mainWindow.webContents.openDevTools();
-    menu = getMenu(mainWindow.webContents);
+    window.maximize()
+    remote.enable(window.webContents)
+    window.removeMenu(true);
+    window.loadFile(loadFile);
+    window.webContents.openDevTools();
+    let menu = null;
+    if(winTit == 'main'){
+        menu = Menu.buildFromTemplate(getMenuTemplate('mainMenu',window.webContents));
+    }
+    else{
+        menu = Menu.buildFromTemplate(getMenuTemplate('incognitoMenu',window.webContents));
+    }
+    window.setMenu(menu);
+    allWindows.add(window);
+
+    ipcMain.on(`display-app-menu`, function (e, args) {
+        const window = BrowserWindow.fromWebContents(e.sender);
+        console.log(window)
+        if (window) {
+            menu.popup({
+                window: window,
+                x: args.x,
+                y: args.y
+            });
+        }
+    });
+    //window controls
+    ipcMain.on(`minimize-window`, function (e, args) {
+        if (window.minimizable) {
+            window.minimize();
+        }
+    });
+    ipcMain.on(`maximize-window`, function (e, args) {
+        if (window.maximizable) {
+            window.maximize();
+        }
+    });
+    ipcMain.on(`unmaximize-window`, function (e, args) {
+        window.unmaximize();
+    });
+    ipcMain.on(`max-unmax-window`, function (e, args) {
+        if (window.isMaximized()) {
+            window.unmaximize();
+        } else {
+            window.maximize();
+        }
+    });
+    ipcMain.on(`close-window`, function (e, args) {
+        const window = BrowserWindow.fromWebContents(e.sender);
+        window.close();
+    });
+    ipcMain.on(`is-window-maximized`, function (e, args) {
+        return window.isMaximized();
+    });
+    ipcMain.on(`open-incognito-window`, function (e, args) {
+        createWindow('incognito',path.join(__dirname, "/src/pages/index-incognito.html"));
+    });
 }
 
 app.whenReady().then(() => {
-    createWindow('index.html');
+    createWindow('main','index.html')
     app.on('activate', () => {
         if (BrowserWindow.getAllWindows().length === 0) {
-            createWindow();
+            createWindow('main','index.html')
         }
     })
 })
 
 app.on('window-all-closed', () => {
     if (process.platform !== 'darwin') {
-        app.quit();
+        app.quit()
     }
 })
-
-ipcMain.on(`display-app-menu`, function (e, args) {
-    if (mainWindow) {
-        menu.popup({
-            window: mainWindow,
-            x: args.x,
-            y: args.y
-        });
-    }
-});
-//window controls
-ipcMain.on(`minimize-window`, function (e, args) {
-    if (mainWindow.minimizable) {
-        mainWindow.minimize();
-    }
-});
-ipcMain.on(`maximize-window`, function (e, args) {
-    if (mainWindow.maximizable) {
-        mainWindow.maximize();
-    }
-});
-ipcMain.on(`unmaximize-window`, function (e, args) {
-    mainWindow.unmaximize();
-});
-ipcMain.on(`max-unmax-window`, function (e, args) {
-    if (mainWindow.isMaximized()) {
-        mainWindow.unmaximize();
-    } else {
-        mainWindow.maximize();
-    }
-});
-ipcMain.on(`close-window`, function (e, args) {
-    mainWindow.close();
-});
-ipcMain.on(`is-window-maximized`, function (e, args) {
-    return mainWindow.isMaximized();
-});
-ipcMain.on(`open-incognito-window`, function (e, args) {
-    createWindow('index-incognito.html');
-});
 

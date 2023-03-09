@@ -442,7 +442,7 @@ class WanroiBrowserTabs {
 		});
 	}
 
-	addTab(title, favicon="", src=undefined) {
+	addTab(title, favicon="", src=undefined,incognito=false) {
 		let child = undefined;
 		console.log(src)
 		if(src == 'history'){
@@ -467,7 +467,13 @@ class WanroiBrowserTabs {
 			this.viewToPush = child;
 			this.DOM_browser_views.appendChild(child);
 			var script = document.createElement("script");
-			let jsContent = fs.readFileSync(path.join(__dirname, "/src/browser/new-tab.js"),'utf8');
+			let jsContent = undefined;
+			if(incognito){
+				jsContent = fs.readFileSync(path.join(__dirname, '/../browser/new-tab.js'),'utf8');
+			}
+			else{
+				jsContent = fs.readFileSync(path.join(__dirname, "/src/browser/new-tab.js"),'utf8');
+			}
 			jsContent = jsContent.replace(/{HEROID}/g, this.accTabId)
 			script.innerHTML = jsContent;
 			this.DOM_browser_views.append(script)

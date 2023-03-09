@@ -1,3 +1,4 @@
+
 let activeWebView = undefined;
 
 loadstart = () => {
@@ -13,7 +14,11 @@ did_finish_load = () => {
         $('#mainSearch').val(window.activeWebView.getURL());
 }
 
-browserTabManager.addTab("New Tab", "", "browser");
+if(typeof incognito == 'undefined')
+    browserTabManager.addTab("New Tab", "", "browser",false);
+else
+    browserTabManager.addTab("New Tab", "", "browser",incognito);
+
 
 $('#add-tab').on('click', function () {
     browserTabManager.addTab("New Tab", "", "browser");

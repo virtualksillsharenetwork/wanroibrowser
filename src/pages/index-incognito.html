@@ -7,9 +7,9 @@
     <title>Wanroi</title>
     <meta name="description" content="Chrome-style tabs in HTML/CSS/JS.">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <link href="assets/demo/css/demo.css" rel="stylesheet">
-    <link href="assets/css/chrome-tabs.css" rel="stylesheet">
-    <link href="assets/css/chrome-tabs-dark-theme.css" rel="stylesheet">
+    <link href="../../assets/demo/css/demo.css" rel="stylesheet">
+    <link href="../../assets/css/chrome-tabs.css" rel="stylesheet">
+    <link href="../../assets/css/chrome-tabs-dark-theme.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <script>window.$ = window.jQuery = require('jquery');</script>
@@ -83,10 +83,10 @@
             </div>
             <div class="dropdown">
                 <span class="incognito-pic">
-                    <img style="background: rgb(60, 64, 67); width: 23px; height: 23px;" src="./assets/icons/incognito.png" alt="icon">
+                    <img style="background: rgb(60, 64, 67); width: 23px; height: 23px;" src="../../assets/icons/incognito.png" alt="icon">
                 </span>
                 <div class="dropdown-content">
-                    <img style="background: rgb(60, 64, 67); " src="./assets/icons/incognito-dropdown.PNG" alt="icon">
+                    <img style="background: rgb(60, 64, 67); " src="../../assets/icons/incognito-dropdown.PNG" alt="icon">
              
                   <button style="font-size: small;width: 97%;padding: 4px;display:block;"><i class="fa-solid fa-x" style="color: #A3A9B0;margin: 10px;"></i><span style="margin-left: 20px;"> Close Incognito </span></button>
                 </div>
@@ -102,27 +102,27 @@
     </div>
     <div class="bookmarks-section">
         <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/facebook.png" />
+            <img src="../../assets/icons/bookmarks/facebook.png" />
             Facebook
         </div>
         <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/youtube.png" />
+            <img src="../../assets/icons/bookmarks/youtube.png" />
             Youtube
         </div>
         <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/instagram.png" />
+            <img src="../../assets/icons/bookmarks/instagram.png" />
             Instagram
         </div>
         <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/twitter.png" />
+            <img src="../../assets/icons/bookmarks/twitter.png" />
             Twitter
         </div>
         <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/whatsapp.png" />
+            <img src="../../assets/icons/bookmarks/whatsapp.png" />
             Whatsapp
         </div>
         <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/linkedin.png" />
+            <img src="../../assets/icons/bookmarks/linkedin.png" />
             Linkedin
         </div>
     </div>
@@ -142,12 +142,15 @@
             <webview nodeintegration="" nodeintegrationinsubframes="" id="webview0" src="/index-incognito.html" style="display:inline-flex; width:100vh; height:100vh"></webview>
         </div> -->
     </div>
+    <script>
+        let incognito = true;
+    </script>
     <script src="https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"></script>
-    <script src="./src/helpers/helper.js"></script>
-    <script src="./src/browser/browser-tab-manager.js"></script>
-    <script src="./src/preloads/constants.js"></script>
-    <script src="./src/helpers/menu-functions.js"></script>
-    <script src="./src/renderer/renderer.js" type="text/javascript"></script>
+    <script src="../../src/helpers/helper.js"></script>
+    <script src="../../src/browser/browser-tab-manager.js"></script>
+    <script src="../../src/preloads/constants.js"></script>
+    <script src="../../src/helpers/menu-functions.js"></script>
+    <script src="../../src/renderer/renderer.js" type="text/javascript"></script>
 </body>
 
 </html>
