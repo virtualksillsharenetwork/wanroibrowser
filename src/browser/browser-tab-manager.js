@@ -380,6 +380,7 @@ class WanroiBrowserTabs {
 
 	tabs = []
 	views = [] 
+	tabCounter = 0;
 
 	viewToPush = undefined;
 
@@ -422,7 +423,8 @@ class WanroiBrowserTabs {
 			//console.debug("Tab added:", id, event.detail)
 
 			if(this.viewToPush)
-				this.views.push(this.viewToPush)
+				{this.views.push(this.viewToPush)
+				this.tabCounter = this.tabCounter + 1;}
 			else {
 				throw "View to push is undefined"
 			}
@@ -434,10 +436,15 @@ class WanroiBrowserTabs {
 			console.debug("Tab remove: ", id)
 
 			console.debug("Tab array: ", this.views)
-
+			
 			this.views[id].remove() //Delete from document
 			delete this.views[id] //Delete from array
-
+			this.tabCounter = this.tabCounter - 1;
+			console.log("Tab COUNTER variable : "+this.tabCounter)
+			if(this.tabCounter <= 0)
+			{
+				window.close();
+			}
 			console.debug("Tab array after delete: ", this.views)
 		});
 	}
@@ -495,6 +502,7 @@ class WanroiBrowserTabs {
 	removeCurrentTab() {
 		this.activeView.remove()
 		chromeTabs.removeTab(this.activeTab)
+	
 	}
 
 	getCurrent() {
