@@ -74,4 +74,5 @@ maxUnmaxButton.addEventListener("click", e => {
 
 closeButton.addEventListener("click", e => {
     window.closeWindow();
+    //  console.log(helper.getActiveWebView().getURL());
 });
