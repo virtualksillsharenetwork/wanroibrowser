@@ -23,7 +23,8 @@ $('#mainSearch').on('keydown', function (event) {
     if (event.key === "Enter") {
         activeWebView = helper.getActiveWebView();
         if (helper.validURL(this.value)) {
-            activeWebView.loadURL(this.value);
+            var correctURL = helper.correctURL(this.value);
+            activeWebView.loadURL(correctURL);
         }
         else {
             activeWebView.loadURL(`https://search.wanroi.com/web?q=${this.value}`);

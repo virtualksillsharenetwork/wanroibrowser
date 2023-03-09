@@ -9,6 +9,18 @@ class Helper {
             '(\\#[-a-z\\d_]*)?$', 'i'); // fragment locator
         return !!pattern.test(str);
     }
+    correctURL(str) {
+        if(str.startsWith('http://') || str.startsWith('https://'))
+        {
+            return str;
+        }
+        var urlPreString = ``;
+        if (!/^https?:\/\//i.test(str)) {
+            urlPreString = `http://` + str;
+        }
+        return urlPreString;
+    }
+
     getActiveWebView() {
         var activeWebView = $('.tab-content .selected webview')[0].id;
         return window[activeWebView];
