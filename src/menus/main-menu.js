@@ -1,8 +1,5 @@
 const { app, Menu } = require("electron");
 
-
-
-
 function getMenu(webContents){
 
   const isMac = process.platform === "darwin";

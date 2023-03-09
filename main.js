@@ -2,7 +2,7 @@ const remote = require('@electron/remote/main')
 remote.initialize()
 const { app, ipcMain, BrowserWindow } = require('electron')
 const path = require('path');
-const { getMenu } = require('./src/menu');
+const { getMenu } = require('./src/menus/main-menu');
 let menu = null;
 require('./env');
 
@@ -19,18 +19,18 @@ function createWindow(loadFile) {
         minHeight:600,
         minWidth:800,
         webPreferences: {
-            preload: path.join(__dirname, "/new/preloads/preload.js"),
             webviewTag: true,
             nodeIntegration: true,
             contextIsolation: false,
             enableRemoteModule: true,
         }
     });
+    mainWindow.maximize()
     remote.enable(mainWindow.webContents)
     //mainWindow.removeMenu(true);
     mainWindow.loadFile(loadFile);
-    //mainWindow.webContents.openDevTools();
-    // menu = getMenu(mainWindow.webContents);
+    mainWindow.webContents.openDevTools();
+    menu = getMenu(mainWindow.webContents);
 }
 
 app.whenReady().then(() => {
@@ -50,11 +50,11 @@ app.on('window-all-closed', () => {
 
 ipcMain.on(`display-app-menu`, function (e, args) {
     if (mainWindow) {
-        // menu.popup({
-        //     window: mainWindow,
-        //     x: args.x,
-        //     y: args.y
-        // });
+        menu.popup({
+            window: mainWindow,
+            x: args.x,
+            y: args.y
+        });
     }
 });
 //window controls

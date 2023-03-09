@@ -1,4 +1,3 @@
-
 window['webview{HEROID}'] = document.getElementById('webview{HEROID}')
 window['webview{HEROID}'].addEventListener('did-start-loading', loadstart);
 window['webview{HEROID}'].addEventListener('did-start-load', loadstop);

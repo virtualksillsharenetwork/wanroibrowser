@@ -11,23 +11,16 @@
     <link href="assets/css/chrome-tabs.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <script>window.$ = window.jQuery = require('jquery');</script>
+    <link href="assets/css/history.css" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/b56725845a.js" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@100;300;400;500;700&display=swap" rel="stylesheet">
+    
 </head>
 
 <body>
-    <!-- <div id="menu-bar">
-        <div class="left" role="menu">
-          <button class="menubar-btn" id="menu-btn"><i class="fas fa-bars"></i></button>
-          <h5>My Awesome App</h5>
-        </div>
-        <div class="right">
-          <button class="menubar-btn" id="minimize-btn"><i class="fas fa-window-minimize"></i></button>
-          <button class="menubar-btn" id="max-unmax-btn"><i class="far fa-square"></i></button>
-          <button class="menubar-btn" id="close-btn"><i class="fas fa-times"></i></button>
-        </div>
-    </div> -->
-    <!-- -webkit-app-region: drag; -->
-
     <div class="chrome-tabs" style="--tab-content-margin: 0px;-webkit-app-region: drag;">
         <div class="chrome-tab-wrapper">
         <div class="chrome-tab-content-section" style="-webkit-app-region: no-drag;">
@@ -114,16 +107,9 @@
             Linkedin
         </div>
     </div>
-    <button id="open-incognito-window" onclick="openIncognitoButton()">open-incognito-window</button>
+    <!-- <button id="open-incognito-window" onclick="openIncognitoButton()">open-incognito-window</button> -->
        
-    <!-- <div class="mock-browser-content">
-        <div class="buttons">
-          <button data-theme-toggle>Toggle dark theme</button>
-          <button data-add-tab>Add new tab</button>
-          <button data-add-background-tab>Add tab in the background</button>
-          <button data-remove-tab>Remove active tab</button>
-        </div>
-      </div> -->
+   
 
     <div class="tab-content">
         <!-- <div class="eb-view" data-eb_view_id="0">
@@ -131,12 +117,11 @@
         </div> -->
     </div>
     <script src="https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"></script>
-    <script src="./new/browser/browser-tab-manager.js"></script>
-    <script src="./new/renderer/renderer.js" type="text/javascript"></script>
-    <!-- <script src="./src/menu-handler.js"></script>
-    <script src="./src/webview-handler.js"></script>
-    <script src="./src/browser-tabs.js"></script>
-    <script src="./src/browser-tabs-handler.js"></script> -->
+    <script src="./src/helpers/helper.js"></script>
+    <script src="./src/browser/browser-tab-manager.js"></script>
+    <script src="./src/preloads/constants.js"></script>
+    <script src="./src/helpers/menu-functions.js"></script>
+    <script src="./src/renderer/renderer.js" type="text/javascript"></script>
 </body>
 
 </html>

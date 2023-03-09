@@ -1,4 +1,7 @@
+const path = require('path');
+const fs = require('fs');
 
+var history_file = path.join(__dirname, "/history.json");
 let instanceId = 0
 
 const Draggabilly = require('draggabilly')
@@ -369,7 +372,7 @@ const defaultTapProperties = {
 
 var chromeTabs = new ChromeTabs()
 
-class ElectronChromeTabs {
+class WanroiBrowserTabs {
 	DOM_tabs;
 	DOM_browser_views;
 
@@ -440,8 +443,18 @@ class ElectronChromeTabs {
 	}
 
 	addTab(title, favicon="", src=undefined) {
-		let child = undefined
-		if(src) {
+		let child = undefined;
+		console.log(src)
+		if(src == 'history'){
+			const content = fs.readFileSync(path.join(__dirname, "/src/pages/history.html"),'utf8');
+			child = document.createElement("div");
+			child.innerHTML = content;
+			child.classList.add("eb-view");
+			child.dataset.eb_view_id = this.accTabId;	
+			this.viewToPush = child;
+			this.DOM_browser_views.appendChild(child);
+		}
+		if (src == 'browser') {
 			console.log("Adding webview view")
 			//child = document.createElement("webview")
 			//child.setAttribute("src", src);
@@ -449,23 +462,16 @@ class ElectronChromeTabs {
 			style="display:inline-flex;width:100%;height:100%"></webview>`;
 			child = document.createElement("div");
 			child.innerHTML = content;
+			child.classList.add("eb-view");
+			child.dataset.eb_view_id = this.accTabId;	
+			this.viewToPush = child;
+			this.DOM_browser_views.appendChild(child);
+			var script = document.createElement("script");
+			let jsContent = fs.readFileSync(path.join(__dirname, "/src/browser/new-tab.js"),'utf8');
+			jsContent = jsContent.replace(/{HEROID}/g, this.accTabId)
+			script.innerHTML = jsContent;
+			this.DOM_browser_views.append(script)
 		}
-		child.classList.add("eb-view");
-		child.dataset.eb_view_id = this.accTabId;
-
-		this.viewToPush = child;
-
-		
-		this.DOM_browser_views.appendChild(child);
-		var script = document.createElement("script");
-		const fs = require('fs');
-		const path = require('path');
-		let jsContent = fs.readFileSync(path.join(__dirname, "/new/hero.js"),'utf8');
-		jsContent = jsContent.replace(/{HEROID}/g, this.accTabId)
-		script.innerHTML = jsContent;
-
-		this.DOM_browser_views.append(script)
-
 		let tabEl = chromeTabs.addTab({
 			title: title,
 			favicon: favicon
@@ -501,4 +507,4 @@ class ElectronChromeTabs {
 	}
 }
 
-module.exports = ElectronChromeTabs
+module.exports = WanroiBrowserTabs;

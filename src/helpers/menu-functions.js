@@ -1,5 +1,3 @@
-const { remote, ipcRenderer } = require("electron");
-
 function openMenu(x, y) {
     ipcRenderer.send(`display-app-menu`, { x, y });
 }
@@ -33,15 +31,3 @@ function isWindowMaximized() {
 function openIncognitoWindow() {
     ipcRenderer.send(`open-incognito-window`);
 }
-
-module.exports = {
-    getCurrentWindow,
-    openMenu,
-    minimizeWindow,
-    maximizeWindow,
-    unmaximizeWindow,
-    maxUnmaxWindow,
-    isWindowMaximized,
-    closeWindow,
-    openIncognitoWindow,
-};
