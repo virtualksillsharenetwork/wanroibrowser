@@ -189,6 +189,7 @@ class ChromeTabs {
 	}
 
 	get activeTabEl() {
+		
 		return this.DOM_chrome_tabs.querySelector(`.${TAB_CLASS}[active]`)
 	}
 
@@ -396,8 +397,9 @@ class WanroiBrowserTabs {
 		this.DOM_tabs.addEventListener("activeTabChange", (event) => {
 			let tab = event.detail.tabEl
 			let id = tab["data-ectTabId"]
-			console.debug("Active tab changed to: ", tab, id)
+			console.log("Active tab changed to: ", tab, id)
 
+			
 			function set_active_webview_and_deselect_others(view, i) {
 				if (i == id) {
 					view.classList.add("selected");
@@ -411,8 +413,7 @@ class WanroiBrowserTabs {
 			this.views.forEach(boundFunction)
 
 			this.activeTab = this.tabs[id]
-
-			this.getCurrent()
+			helper.changeUrlOnActiveWebViewChange();
 		});
 
 		this.DOM_tabs.addEventListener('tabAdd', (event) => {
@@ -440,7 +441,7 @@ class WanroiBrowserTabs {
 			this.views[id].remove() //Delete from document
 			delete this.views[id] //Delete from array
 			this.tabCounter = this.tabCounter - 1;
-			console.log("Tab COUNTER variable : "+this.tabCounter)
+			console.debug("Tab COUNTER variable : "+this.tabCounter)
 			if(this.tabCounter <= 0)
 			{
 				window.close();
@@ -462,9 +463,10 @@ class WanroiBrowserTabs {
 			this.DOM_browser_views.appendChild(child);
 		}
 		if (src == 'browser') {
-			console.log("Adding webview view")
+			console.debug("Adding webview view")
 			//child = document.createElement("webview")
 			//child.setAttribute("src", src);
+			
 			const content = `<webview nodeintegration nodeintegrationinsubframes id="webview${this.accTabId}" src="https://search.wanroi.com/"
 			style="display:inline-flex;width:100%;height:100%"></webview>`;
 			child = document.createElement("div");
@@ -519,6 +521,7 @@ class WanroiBrowserTabs {
 	showTabsBar() {
 		document.getElementById("eb-tabs-bar").style.display = "block";
 	}
+	
 }
 
 module.exports = WanroiBrowserTabs;
