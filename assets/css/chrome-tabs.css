@@ -9,6 +9,23 @@
   border-radius: 5px 5px 0 0;
   overflow: hidden;
 }
+.chrome-tabs .chrome-tab .chrome-tab-dividers::before {
+  left: 0;
+}
+.chrome-tabs .chrome-tab .chrome-tab-dividers::after {
+  right: 0;
+}
+.chrome-tabs .chrome-tab .chrome-tab-dividers::before, .chrome-tabs .chrome-tab .chrome-tab-dividers::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: #a9adb0;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
 .chrome-tabs * {
   box-sizing: inherit;
   font: inherit;
@@ -173,8 +190,8 @@
   width: 16px;
 }
 .chrome-user svg{
-  height: 26px;
-  width: 26px;
+  height: 22px;
+  width: 22px;
 }
 .chrome-extensions:hover{
   border-color: #c0c3c8;
@@ -187,7 +204,7 @@
   width: fit-content;
 }
 .chrome-extensions .extension {
-  width: 30px;
+  width: 25px;
   height: auto;
   border-radius: 100%;
   border: 1px solid transparent;
@@ -429,7 +446,7 @@
 .chrome-tabs .chrome-tab {
   width: 258px;
   transform: none !important;
-  margin: 0px -9px 0;
+  margin: 0px -10px 0;
 }
 .browser-controls {
   display: flex;
@@ -499,7 +516,7 @@
 }
 
 .tab-content {
-	height: 100%;
+	height: calc(100% - 130px);
 	display: flex;
 }
 .tab-content .eb-view {
