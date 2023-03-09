@@ -116,6 +116,24 @@
             <webview nodeintegration="" nodeintegrationinsubframes="" id="webview0" src="https://search.wanroi.com/" style="display:inline-flex; width:100vh; height:100vh"></webview>
         </div> -->
     </div>
+    <script>
+        function activeMobileMenu(){
+            $(".venroi-history-wrapper").addClass("active-mobile-menu")
+        }
+        function deactiveMobileMenu(){
+            $(".venroi-history-wrapper").removeClass("active-mobile-menu")
+        }
+        $(document).ready(function() {
+            $('.venroi-history-right-content').scroll(function() { 
+                var scroll = $('.venroi-history-right-content').scrollTop();
+                if (scroll >= 10) {
+                    $(".venroi-history-header").addClass("shadowHeader");
+                }else{
+                    $(".venroi-history-header").removeClass("shadowHeader");
+                }
+            });
+        });
+    </script>
     <script src="https://unpkg.com/draggabilly@2.2.0/dist/draggabilly.pkgd.min.js"></script>
     <script src="./src/helpers/helper.js"></script>
     <script src="./src/browser/browser-tab-manager.js"></script>

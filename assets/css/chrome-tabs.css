@@ -232,6 +232,7 @@
   background-color: #fff;
   display: flex;
   padding: 8px 10px;
+  border-bottom: 1px solid #dedede;
 }
 .bookmarks-section .bookmarks-item img {
   max-width: 15px;
@@ -518,13 +519,14 @@
 .tab-content {
 	height: calc(100% - 130px);
 	display: flex;
+  background-color: #fff;;
 }
 .tab-content .eb-view {
 	display: none;
 	flex: 1;
 }
 .tab-content .eb-view.selected {
-	display: flex;
+	display: block;
 }
 body,
 html{
