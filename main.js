@@ -25,63 +25,25 @@ function createWindow(winTit,loadFile) {
             enableRemoteModule: true,
         }
     });
+    window.name = winTit;
     window.maximize()
     remote.enable(window.webContents)
     window.removeMenu(true);
     window.loadFile(loadFile);
     window.webContents.openDevTools();
+    // window.webContents.session.clearCache(() => {
+    //     window.webContents.session.clearStorageData()
+    //     alert('cache is cleared')
+    //    })
     let menu = null;
-    if(winTit == 'main'){
+    if(window.name == 'main'){
         menu = Menu.buildFromTemplate(getMenuTemplate('mainMenu',window.webContents));
     }
-    else{
+    if(window.name == 'incognito'){
         menu = Menu.buildFromTemplate(getMenuTemplate('incognitoMenu',window.webContents));
     }
     window.setMenu(menu);
     allWindows.add(window);
-
-    ipcMain.on(`display-app-menu`, function (e, args) {
-        const window = BrowserWindow.fromWebContents(e.sender);
-        console.log(window)
-        if (window) {
-            menu.popup({
-                window: window,
-                x: args.x,
-                y: args.y
-            });
-        }
-    });
-    //window controls
-    ipcMain.on(`minimize-window`, function (e, args) {
-        if (window.minimizable) {
-            window.minimize();
-        }
-    });
-    ipcMain.on(`maximize-window`, function (e, args) {
-        if (window.maximizable) {
-            window.maximize();
-        }
-    });
-    ipcMain.on(`unmaximize-window`, function (e, args) {
-        window.unmaximize();
-    });
-    ipcMain.on(`max-unmax-window`, function (e, args) {
-        if (window.isMaximized()) {
-            window.unmaximize();
-        } else {
-            window.maximize();
-        }
-    });
-    ipcMain.on(`close-window`, function (e, args) {
-        const window = BrowserWindow.fromWebContents(e.sender);
-        window.close();
-    });
-    ipcMain.on(`is-window-maximized`, function (e, args) {
-        return window.isMaximized();
-    });
-    ipcMain.on(`open-incognito-window`, function (e, args) {
-        createWindow('incognito',path.join(__dirname, "/src/pages/index-incognito.html"));
-    });
 }
 
 app.whenReady().then(() => {
@@ -99,3 +61,55 @@ app.on('window-all-closed', () => {
     }
 })
 
+
+ipcMain.on(`display-app-menu`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
+    let menu = null;
+    if(window.name == 'main'){
+        menu = Menu.buildFromTemplate(getMenuTemplate('mainMenu',window.webContents));
+    }
+    if(window.name == 'incognito'){
+        menu = Menu.buildFromTemplate(getMenuTemplate('incognitoMenu',window.webContents));
+    }
+    menu.popup({
+        window: window,
+        x: args.x,
+        y: args.y
+    });
+});
+//window controls
+ipcMain.on(`minimize-window`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
+    if (window.minimizable) {
+        window.minimize();
+    }
+});
+ipcMain.on(`maximize-window`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
+    if (window.maximizable) {
+        window.maximize();
+    }
+});
+ipcMain.on(`unmaximize-window`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
+    window.unmaximize();
+});
+ipcMain.on(`max-unmax-window`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
+    if (window.isMaximized()) {
+        window.unmaximize();
+    } else {
+        window.maximize();
+    }
+});
+ipcMain.on(`close-window`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
+    window.close();
+});
+ipcMain.on(`is-window-maximized`, function (e, args) {
+    const window = BrowserWindow.fromWebContents(e.sender);
+    return window.isMaximized();
+});
+ipcMain.on(`open-incognito-window`, function (e, args) {
+    createWindow('incognito',path.join(__dirname, "/src/pages/index-incognito.html"));
+});
