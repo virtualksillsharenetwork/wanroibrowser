@@ -54,10 +54,12 @@ html, body {
 }
 .venroi-history-search-wrapper button {
   border: none;
-  padding: 5px;
+  padding: 6px;
   border-radius: 50px;
   margin-right: 15px;
   transition: all ease-out .2s;
+  width: 30px;
+  background: transparent;
 }
 .venroi-history-body-container {
   display: flex;
