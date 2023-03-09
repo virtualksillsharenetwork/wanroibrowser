@@ -192,21 +192,3 @@
         </div>
     </div>
   </div>
-<script>
-    function activeMobileMenu(){
-        $(".venroi-history-wrapper").addClass("active-mobile-menu")
-    }
-    function deactiveMobileMenu(){
-        $(".venroi-history-wrapper").removeClass("active-mobile-menu")
-    }
-    $(function() {
-        $('.venroi-history-right-content').scroll(function() { 
-            var scroll = $('.venroi-history-right-content').scrollTop();
-            if (scroll >= 10) {
-                $(".venroi-history-header").addClass("shadowHeader");
-            }else{
-                $(".venroi-history-header").removeClass("shadowHeader");
-            }
-        });
-    });
-</script>

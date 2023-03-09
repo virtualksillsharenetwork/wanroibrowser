@@ -460,6 +460,25 @@ class WanroiBrowserTabs {
 			child.dataset.eb_view_id = this.accTabId;	
 			this.viewToPush = child;
 			this.DOM_browser_views.appendChild(child);
+			var script = document.createElement("script");
+			let jsContent = `function activeMobileMenu(){
+				$(".venroi-history-wrapper").addClass("active-mobile-menu")
+			}
+			function deactiveMobileMenu(){
+				$(".venroi-history-wrapper").removeClass("active-mobile-menu")
+			}
+			$(function() {
+				$('.venroi-history-right-content').scroll(function() { 
+					var scroll = $('.venroi-history-right-content').scrollTop();
+					if (scroll >= 10) {
+						$(".venroi-history-header").addClass("shadowHeader");
+					}else{
+						$(".venroi-history-header").removeClass("shadowHeader");
+					}
+				});
+			});`;
+			script.innerHTML = jsContent;
+			this.DOM_browser_views.append(script)
 		}
 		if (src == 'browser') {
 			console.log("Adding webview view")
