@@ -25,9 +25,7 @@ class Helper {
         var activeWebView = $('.tab-content .selected webview')[0].id;
         return window[activeWebView];
     }
-    changeUrlOnActiveWebViewChange(){
-       
-    }
+    
 }
 
 module.exports = new Helper();

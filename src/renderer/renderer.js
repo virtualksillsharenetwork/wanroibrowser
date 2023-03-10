@@ -60,7 +60,7 @@ function loading(activeWebView) {
     } 
 }
 function reloadAndRefreshSearch(activeWebView) {
-    activeWebView.reload();
+   
    loading(activeWebView);
    mainSearch.value = activeWebView.getURL();
    if(mainSearch.value == "https://search.wanroi.com/")
@@ -107,6 +107,7 @@ closeButton.addEventListener("click", e => {
 
 mainReload.addEventListener("click", e => {
    activeWebView = helper.getActiveWebView();
+   activeWebView.reload();
    reloadAndRefreshSearch(activeWebView)
 });
 
@@ -117,14 +118,19 @@ mainPrevious.addEventListener("click", e => {
     {
         activeWebView.goBack();
         loading(activeWebView);
-        setTimeout(function(){
+        setTimeout(async () => {
             reloadAndRefreshSearch(activeWebView)
-        }, 1500);
-       // mainFarward.innerHTML =  '<i class="fa-solid fa-arrow-right"  style="color: #333;"></i>';
+           }, 2000);
+        
+        mainFarward.innerHTML =  '<i class="fa-solid fa-arrow-right"  style="color: #333;"></i>';
+        if(activeWebView.canGoBack())
+        {
+            mainPrevious.innerHTML =  '<i class="fa-solid fa-arrow-left"  style="color: #9ea3ab;"></i>';
+        }
     }
-    // else{
-    //     mainPrevious.innerHTML =  '<i class="fa-solid fa-arrow-left"  style="color: #9ea3ab;"></i>';
-    // }
+    else{
+        mainPrevious.innerHTML =  '<i class="fa-solid fa-arrow-left"  style="color: #9ea3ab;"></i>';
+    }
     
 });
 
@@ -134,9 +140,10 @@ mainFarward.addEventListener("click", e => {
     {
         activeWebView.goForward();
         loading(activeWebView);
-        setTimeout(function(){
+        setTimeout(async () => {
             reloadAndRefreshSearch(activeWebView)
-        }, 1500);
+           }, 2000);
+
     }
     
 });
@@ -150,4 +157,9 @@ function fadeForwardBackward(activeWebView) {
     {
         mainPrevious.innerHTML =  '<i class="fa-solid fa-arrow-left" style="color: #9ea3ab;"></i>';
     }
+}
+function changeUrlOnActiveWebViewChange() { 
+   
+    activeWebView =  helper.getActiveWebView();
+    reloadAndRefreshSearch(activeWebView);
 }

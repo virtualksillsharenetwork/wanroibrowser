@@ -397,8 +397,8 @@ class WanroiBrowserTabs {
 		this.DOM_tabs.addEventListener("activeTabChange", (event) => {
 			let tab = event.detail.tabEl
 			let id = tab["data-ectTabId"]
-			console.log("Active tab changed to: ", tab, id)
-
+			console.debug("Active tab changed to: ", tab, id)
+			
 			
 			function set_active_webview_and_deselect_others(view, i) {
 				if (i == id) {
@@ -413,7 +413,11 @@ class WanroiBrowserTabs {
 			this.views.forEach(boundFunction)
 
 			this.activeTab = this.tabs[id]
-			helper.changeUrlOnActiveWebViewChange();
+			
+				setTimeout(async () => {
+					changeUrlOnActiveWebViewChange()
+				   }, 1000);
+	
 		});
 
 		this.DOM_tabs.addEventListener('tabAdd', (event) => {
