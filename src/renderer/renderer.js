@@ -26,21 +26,49 @@ $('#add-tab').on('click', function () {
 
 $('#mainSearch').on('keydown', function (event) {
     if (event.key === "Enter") {
-        activeWebView = helper.getActiveWebView();
-        if (helper.validURL(this.value)) {
-            var correctURL = helper.correctURL(this.value);
-            activeWebView.loadURL(correctURL);
-        }
-        else {
-            activeWebView.loadURL(`https://search.wanroi.com/web?q=${this.value}`);
-        }
+        searchURL(this.value);
     }
 });
+
+function searchURL(url) {
+    activeWebView = helper.getActiveWebView();
+    if (helper.validURL(url)) {
+        var correctURL = helper.correctURL(url);
+        activeWebView.loadURL(correctURL);
+        loading(activeWebView);
+    }
+    else {
+        activeWebView.loadURL(`https://search.wanroi.com/web?q=${url}`);
+        loading(activeWebView);
+    }
+}
 
 function openCustomTab(tabName) {
     browserTabManager.addTab(tabName, "", tabName);
 }
-
+function loading(activeWebView) {
+    if(activeWebView.isLoading())
+    { mainReload.innerHTML =  '<i class="fa-solid fa-xmark"></i>';
+    setTimeout(function(){
+        loading(activeWebView)
+    }, 500); 
+    }
+    else
+    {
+        mainPrevious.innerHTML =  '<i class="fa-solid fa-arrow-left"  style="color: #333;"></i>';
+        mainReload.innerHTML =  '<i class="fa-solid fa-rotate-right"></i>';
+    } 
+}
+function reloadAndRefreshSearch(activeWebView) {
+    activeWebView.reload();
+   loading(activeWebView);
+   mainSearch.value = activeWebView.getURL();
+   if(mainSearch.value == "https://search.wanroi.com/")
+   {
+        mainSearch.value = "";
+   }
+   fadeForwardBackward(activeWebView);
+}
 // document.querySelector('button[data-theme-toggle]').addEventListener('click', _ => {
 //     if (el.classList.contains('chrome-tabs-dark-theme')) {
 //         el.classList.remove('chrome-tabs-dark-theme')
@@ -76,3 +104,50 @@ closeButton.addEventListener("click", e => {
     window.closeWindow();
     //  console.log(helper.getActiveWebView().getURL());
 });
+
+mainReload.addEventListener("click", e => {
+   activeWebView = helper.getActiveWebView();
+   reloadAndRefreshSearch(activeWebView)
+});
+
+mainPrevious.addEventListener("click", e => {
+
+    activeWebView = helper.getActiveWebView();
+    if(activeWebView.canGoBack())
+    {
+        activeWebView.goBack();
+        loading(activeWebView);
+        setTimeout(function(){
+            reloadAndRefreshSearch(activeWebView)
+        }, 1500);
+       // mainFarward.innerHTML =  '<i class="fa-solid fa-arrow-right"  style="color: #333;"></i>';
+    }
+    // else{
+    //     mainPrevious.innerHTML =  '<i class="fa-solid fa-arrow-left"  style="color: #9ea3ab;"></i>';
+    // }
+    
+});
+
+mainFarward.addEventListener("click", e => {
+   activeWebView = helper.getActiveWebView();
+    if(activeWebView.canGoForward())
+    {
+        activeWebView.goForward();
+        loading(activeWebView);
+        setTimeout(function(){
+            reloadAndRefreshSearch(activeWebView)
+        }, 1500);
+    }
+    
+});
+
+function fadeForwardBackward(activeWebView) {
+    if(!(activeWebView.canGoForward()))
+    {
+        mainFarward.innerHTML =  '<i class="fa-solid fa-arrow-right" style="color: #9ea3ab;"></i>';
+    }
+    if(!(activeWebView.canGoBack()))
+    {
+        mainPrevious.innerHTML =  '<i class="fa-solid fa-arrow-left" style="color: #9ea3ab;"></i>';
+    }
+}
