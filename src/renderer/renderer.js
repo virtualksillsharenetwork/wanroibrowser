@@ -163,3 +163,74 @@ function changeUrlOnActiveWebViewChange() {
     activeWebView =  helper.getActiveWebView();
     reloadAndRefreshSearch(activeWebView);
 }
+
+mainBookmark.addEventListener("click", e => {
+    //saveBookMarkJson();
+    console.log(addBookMarkJson("https://search.hahahahahahahah.com/"));
+ });
+
+function saveBookMarkJson()
+{
+// json data
+var jsonData = '{"table": [{"url": "https://search.wanroi2.com/"},{"url": "https://search.wanroi3.com/web?q=fb"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://www.facebook.com/"}]}';
+ 
+// parse json
+var jsonObj = JSON.parse(jsonData);
+console.log(jsonObj);
+ 
+// stringify JSON Object
+var jsonContent = JSON.stringify(jsonObj);
+console.log(jsonContent);
+ 
+fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
+    if (err) {
+        console.log("An error occured while writing JSON Object to File.");
+        return console.log(err);
+    }
+ 
+    console.log("JSON file has been saved.");
+});
+
+}
+
+
+function addBookMarkJson(url)
+{
+    //read File
+let dataFromFile = fs.readFileSync('bookmark.json');
+//var jsonData = JSON.parse(dataFromFile);
+//console.log(jsonData);
+// json data
+//var jsonData = '{"table": [{"url": "https://search.wanroi2.com/"},{"url": "https://search.wanroi3.com/web?q=fb"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://www.facebook.com/"}]}';
+ 
+// parse json
+//var jsonObj = JSON.parse(jsonData);
+var jsonObj = JSON.parse(dataFromFile);
+var obj = {"url":url};
+
+
+var existUrl = false;
+for (let i = 0; i < jsonObj.table.length; i++) {
+    if(url == jsonObj.table[i].url)
+    {
+        existUrl = true;
+    }
+  }
+  if(existUrl)
+  {return "This url already exists in bookmark.";}
+  
+  jsonObj.table.push(obj);
+// console.log(x);
+ 
+//stringify JSON Object
+var jsonContent = JSON.stringify(jsonObj);
+//console.log(jsonContent);
+ 
+fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
+    if (err) {
+        return "An error occured while writing JSON Object to File.";
+    }
+    return "Bookmark URL has been added.";
+});
+return "Bookmark URL has been added."
+}
