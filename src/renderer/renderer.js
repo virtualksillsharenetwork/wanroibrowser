@@ -35,12 +35,15 @@ function searchURL(url) {
     if (helper.validURL(url)) {
         var correctURL = helper.correctURL(url);
         activeWebView.loadURL(correctURL);
+        var d = new Date();
+        console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
     }
     else {
         activeWebView.loadURL(`https://search.wanroi.com/web?q=${url}`);
+        console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
-    }
+}
 }
 
 function openCustomTab(tabName) {
@@ -214,6 +217,7 @@ var existUrl = false;
 for (let i = 0; i < jsonObj.table.length; i++) {
     if(url == jsonObj.table[i].url)
     {
+     
         existUrl = true;
     }
   }
@@ -254,4 +258,37 @@ function refreshBookMarkSection()
         divBookmarkSection.append(''+jsonObj.table[i].url); 
     }
     //divBookmarkSection
+}
+
+
+function addHistoryJson(url,time)
+{
+let dataFromFile = fs.readFileSync('history.json');
+
+var jsonObj = JSON.parse(dataFromFile);
+var obj = {"url":url,"time":time};
+
+
+var existUrl = false;
+for (let i = 0; i < jsonObj.table.length; i++) {
+    var seconds = (time.getTime() - jsonObj.table[i].time.getTime()) / 1000;
+    if(!(url == jsonObj.table[i].url && seconds <= 1000))
+    {
+        existUrl = true;
+    }
+  }
+  if(existUrl)
+  {return "This url already exists in history.";}
+  
+  jsonObj.table.push(obj);
+
+var jsonContent = JSON.stringify(jsonObj);
+ 
+fs.writeFile("history.json", jsonContent, 'utf8', function (err) {
+    if (err) {
+        return "An error occured while writing JSON Object to File.";
+    }
+    return "History URL has been added.";
+});
+return "History URL has been added.";
 }
