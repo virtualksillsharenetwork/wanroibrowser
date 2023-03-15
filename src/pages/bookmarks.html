@@ -1,0 +1,199 @@
+<div class="venroi-history-wrapper">
+    <div class="venroi-history-header">
+        <div class="venroi-history-logo desktop-view">
+            <img src="./assets/icons/venroi.png" />
+            <h1>History</h1>
+        </div>
+        <div class="mobile-menu-activator">
+            <a href="javascript:void(0)"; onclick="activeMobileMenu()"><i class="fa-solid fa-bars"></i> History</a>
+        </div>
+        <div class="venroi-history-search-wrapper">
+            <button><i class="fa-solid fa-magnifying-glass"></i></button>
+            <input type="text" placeholder="Search history" />
+        </div>
+    </div>
+    <div class="venroi-history-body-container">
+        <div class="venroi-history-left-sidebar">
+            <div class="venroi-history-logo mobile-view">
+                <img src="./assets/icons/venroi.png" />
+                <h1>History</h1>
+            </div>
+            <div class="history-sidebar-tabs">
+                <a class="menuitem active" href="javascript:void(0)"><i class="fa-regular fa-clock fa-fw"></i> Venroi history</a>
+                <a class="menuitem" href="javascript:void(0)"><i class="fa-solid fa-laptop"></i> Tabs from other devices</a>
+                <a class="menuitem" href="javascript:void(0)"><i class="fa-solid fa-trash"></i> Clear browsing data</a>
+            </div>
+        </div>
+        <div class="mobile-menu-shadow" onclick="deactiveMobileMenu()"></div>
+        <div class="venroi-history-right-content">
+            <div class="tabs-content" id="tabs-content-container-for-history-card">
+                <!-- <div class="history-card">
+                    <h5>Today, Monday, March 6, 2023</h5>
+                    <div class="history-item">
+                        <div class="check-time">
+                            <span class="checkbox">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </span>
+                            <span class="tiem">9:47 PM</span>
+                        </div>
+                        <div class="fav-title">
+                            <span class="favicon"><img src="./assets/icons/venroi.png" /></span>
+                            <span class="title"><a href="javascript:void(0)">Venroi Browser</a></span>
+                            <span class="url">www.search.venroi.com</span>
+                        </div>
+                        <div class="options">
+                            <span class="options-popup" onclick="showHistoryOption(this);"><i class="fa-solid fa-ellipsis"></i></span>
+                            <div class="history-action-popup">
+                                <div class="history-popup-container">
+                                    <a href="javascript:void(9);">Remove from history</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="check-time">
+                            <span class="checkbox">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </span>
+                            <span class="tiem">9:47 PM</span>
+                        </div>
+                        <div class="fav-title">
+                            <span class="favicon"><img src="./assets/icons/venroi.png" /></span>
+                            <span class="title"><a href="javascript:void(0)">Venroi Browser</a></span>
+                            <span class="url">www.search.venroi.com</span>
+                        </div>
+                        <div class="options">
+                            <span class="options-popup"><i class="fa-solid fa-ellipsis"></i></span>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="check-time">
+                            <span class="checkbox">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </span>
+                            <span class="tiem">9:47 PM</span>
+                        </div>
+                        <div class="fav-title">
+                            <span class="favicon"><img src="./assets/icons/venroi.png" /></span>
+                            <span class="title"><a href="javascript:void(0)">Venroi Browser</a></span>
+                            <span class="url">www.search.venroi.com</span>
+                        </div>
+                        <div class="options">
+                            <span class="options-popup"><i class="fa-solid fa-ellipsis"></i></span>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="history-card">
+                    <h5>Today, Monday, March 6, 2023</h5>
+                    <div class="history-item">
+                        <div class="check-time">
+                            <span class="checkbox">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </span>
+                            <span class="tiem">9:47 PM</span>
+                        </div>
+                        <div class="fav-title">
+                            <span class="favicon"><img src="./assets/icons/venroi.png" /></span>
+                            <span class="title"><a href="javascript:void(0)">Venroi Browser</a></span>
+                            <span class="url">www.search.venroi.com</span>
+                        </div>
+                        <div class="options">
+                            <span class="options-popup"><i class="fa-solid fa-ellipsis"></i></span>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="check-time">
+                            <span class="checkbox">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </span>
+                            <span class="tiem">9:47 PM</span>
+                        </div>
+                        <div class="fav-title">
+                            <span class="favicon"><img src="./assets/icons/venroi.png" /></span>
+                            <span class="title"><a href="javascript:void(0)">Venroi Browser</a></span>
+                            <span class="url">www.search.venroi.com</span>
+                        </div>
+                        <div class="options">
+                            <span class="options-popup"><i class="fa-solid fa-ellipsis"></i></span>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="check-time">
+                            <span class="checkbox">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </span>
+                            <span class="tiem">9:47 PM</span>
+                        </div>
+                        <div class="fav-title">
+                            <span class="favicon"><img src="./assets/icons/venroi.png" /></span>
+                            <span class="title"><a href="javascript:void(0)">Venroi Browser</a></span>
+                            <span class="url">www.search.venroi.com</span>
+                        </div>
+                        <div class="options">
+                            <span class="options-popup"><i class="fa-solid fa-ellipsis"></i></span>
+                        </div>
+                    </div>
+                </div> -->
+                <!-- <div class="history-card">
+                    <h5>Today, Monday, March 6, 2023</h5>
+                    <div class="history-item">
+                        <div class="check-time">
+                            <span class="checkbox">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </span>
+                            <span class="tiem">9:47 PM</span>
+                        </div>
+                        <div class="fav-title">
+                            <span class="favicon"><img src="./assets/icons/venroi.png" /></span>
+                            <span class="title"><a href="javascript:void(0)">Venroi Browser</a></span>
+                            <span class="url">www.search.venroi.com</span>
+                        </div>
+                        <div class="options">
+                            <span class="options-popup"><i class="fa-solid fa-ellipsis"></i></span>
+                        </div>
+                    </div>
+                    <div class="history-item">
+                        <div class="check-time">
+                            <span class="checkbox">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked="checked">
+                                    <span class="checkmark"></span>
+                                  </label>
+                            </span>
+                            <span class="tiem">9:47 PM</span>
+                        </div>
+                        <div class="fav-title">
+                            <span class="favicon"><img src="./assets/icons/venroi.png" /></span>
+                            <span class="title"><a href="javascript:void(0)">Venroi Browser</a></span>
+                            <span class="url">www.search.venroi.com</span>
+                        </div>
+                        <div class="options">
+                            <span class="options-popup"><i class="fa-solid fa-ellipsis"></i></span>
+                        </div>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </div>
+  </div>
