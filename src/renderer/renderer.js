@@ -389,7 +389,12 @@ function callingRendererFunctionForHistory()
    '             <span class="url">'+url+'</span>'+
    '         </div>'+
    '         <div class="options">'+
-   '             <span class="options-popup"><i class="fa-solid fa-ellipsis"></i></span>'+
+   '             <span class="options-popup" onclick="showHistoryOption(this);"><i class="fa-solid fa-ellipsis"></i></span>'+
+   '                <div class="history-action-popup">'+
+   '                    <div class="history-popup-container">'+
+   '                        <a href="javascript:void(9);">Remove from history</a>'+
+   '                    </div>'+
+   '                </div>'+
    '         </div>'+
    '     </div>'+
    ' </div>'; 
