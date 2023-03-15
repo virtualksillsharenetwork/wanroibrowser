@@ -165,8 +165,9 @@ function changeUrlOnActiveWebViewChange() {
 }
 
 mainBookmark.addEventListener("click", e => {
-    //saveBookMarkJson();
-    console.log(addBookMarkJson("https://search.hahahahahahahah.com/"));
+    //saveBookMarkJson(); getBookMarkJsonArray()
+    console.log(getBookMarkJsonArray());
+   // console.log(addBookMarkJson("https://search.hahahahahahahah.com/"));
  });
 
 function saveBookMarkJson()
@@ -232,5 +233,25 @@ fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
     }
     return "Bookmark URL has been added.";
 });
-return "Bookmark URL has been added."
+return "Bookmark URL has been added.";
+}
+
+
+
+function getBookMarkJsonArray()
+{
+    let dataFromFile = fs.readFileSync('bookmark.json');
+    var jsonObj = JSON.parse(dataFromFile);
+    return jsonObj
+}
+
+function refreshBookMarkSection()
+{
+    let dataFromFile = fs.readFileSync('bookmark.json');
+    var jsonObj = JSON.parse(dataFromFile);
+    divBookmarkSection.innerHTML = '';
+    for (let i = 0; i < jsonObj.table.length; i++) {
+        divBookmarkSection.append(''+jsonObj.table[i].url); 
+    }
+    //divBookmarkSection
 }

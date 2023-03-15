@@ -12,4 +12,5 @@ const mainPrevious = document.getElementById("main-previous-btn");
 const mainFarward = document.getElementById("main-farward-btn");
 const mainSearch = document.getElementById("mainSearch");
 const mainBookmark = document.getElementById("mainBookmark");
+const divBookmarkSection = document.getElementById("bookmarks-section");
 // const openIncognitoButton = document.getElementById("open-incognito-window");
