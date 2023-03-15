@@ -60,8 +60,50 @@
             <span class="info"><img src="./assets/icons/wanroi.png" width="20px" height="17px" /></span>
             <input id="mainSearch" type="text" class="" placeholder="Search Wanroi or type a URL" />
             <div class="sharenbookmark">
-                <span class="share" ><i class="fa-sharp fa-regular fa-share-from-square"></i></span>
-                <span class="bookmark" id="mainBookmark"><i class="fa-sharp fa-regular fa-star"></i></span>
+                <span class="share" onclick="activeSharePopup();"><i class="fa-sharp fa-regular fa-share-from-square"></i></span>
+                <span class="bookmark" onclick="activeBookmarkPopup();" id="mainBookmark"><i class="fa-sharp fa-regular fa-star"></i></span>
+                <div class="share-popup">
+                    <div class="popupr-container">
+                        <div class="current-tab-info">
+                            <img src="./assets/icons/venroi.png" alt="current tab favicon" />
+                            <a href="current-url">
+                                <span>Wanroi.com</span>
+                                <span>https://search.venroi.com</span>
+                            </a>
+                        </div>
+                        <div class="tab-share-options">
+                            <a href="javascript:void(0);">
+                                <i class="fa-regular fa-clone"></i>
+                                <span>Copy Link</span>
+                            </a>
+                            <a href="javascript:void(0);">
+                                <i class="fa-solid fa-qrcode"></i>
+                                <span>Create QR Code</span>
+                            </a>
+                            <a href="javascript:void(0);">
+                                <i class="fa-brands fa-chromecast"></i>
+                                <span>Cast...</span>
+                            </a>
+                            <a href="javascript:void(0);">
+                                <i class="fa-solid fa-download"></i>
+                                <span>Save page as...</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="bookmark-popup">
+                    <div class="bookmark-container">
+                        <p>Bookmark added <span onclick="activeBookmarkPopup();"><i class="fa-solid fa-xmark"></i></span></p>
+                        <div class="bookmark-details">
+                            <label>Name</label>
+                            <input type="text" value="venroi.com" />
+                        </div>
+                        <div class="bookmarks-buttons">
+                            <button onclick="activeBookmarkPopup();" class="button button-primary">Done</button>
+                            <button>Remove</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="extensions">
@@ -117,6 +159,18 @@
         </div> -->
     </div>
     <script>
+        function activeSharePopup(){
+            $(".sharenbookmark").toggleClass("active-share-popup");
+            if($(".active-bookmark-popup")){
+                $(".sharenbookmark").removeClass("active-bookmark-popup")
+            }
+        }
+        function activeBookmarkPopup(){
+            $(".sharenbookmark").toggleClass("active-bookmark-popup");
+            if($(".active-share-popup")){
+                $(".sharenbookmark").removeClass("active-share-popup")
+            }
+        }
         function activeMobileMenu(){
             $(".venroi-history-wrapper").addClass("active-mobile-menu")
         }

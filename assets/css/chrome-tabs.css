@@ -94,12 +94,11 @@
 }
 .global_search {
   width: 100%;
-  overflow: hidden;
   text-align: center;
   position: relative;
   padding: 2px;
 }
-.global_search input {
+.global_search>input {
     width: 100%;
     border: 1px solid #dedede;
     border-radius: 17px;
@@ -107,7 +106,7 @@
     outline: none;
     box-sizing: border-box;
 }
-.global_search input:focus{
+.global_search>input:focus{
   border-color: #4285f4;
   outline: 1px solid #4285f4;
 }
@@ -140,7 +139,9 @@
   color: #9ea3ab;
 }
 .global_search .info:hover,
-.sharenbookmark span:hover{
+.sharenbookmark>span:hover,
+.active-share-popup .share,
+.active-bookmark-popup .bookmark{
   background-color: #c0c3c8;
   color: #333;
 }
@@ -149,7 +150,7 @@
   height: 20px;
   width: 20px;
 }
-.sharenbookmark span {
+.sharenbookmark>span {
   border-radius: 20px;
   padding: 5px 10px;
   box-sizing: border-box;
@@ -556,6 +557,103 @@ html{
   background: rgb(29, 185, 112);
   cursor: pointer;
   color: black;
+}
+.share-popup,
+.bookmark-popup{
+  position: absolute;
+  right: 0;
+  top: 34px;
+  background: #fff;
+  padding: 10px 0px;
+  border-radius: 5px;
+  box-shadow: 0px 0px 2px 0px #dedede;
+  border: 1px solid #dedede;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all ease-out .2s;
+  width: 0;
+}
+.share-popup .current-tab-info span {
+  display: block;
+}
+.share-popup .current-tab-info img {
+  max-width: 30px;
+  object-fit: contain;
+  padding-right: 5px;
+}
+.share-popup .current-tab-info {
+  display: flex;
+  border-bottom: 1px solid #dedede;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+.share-popup .current-tab-info a {
+  text-decoration: none;
+  font-size: 15px;
+  color: #333;
+  text-align: left;
+}
+.tab-share-options a {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  padding: 10px;
+  color: #000;
+}
+.tab-share-options a:hover {
+  background-color: #dedede;
+}
+.tab-share-options i {
+  margin-right: 15px;
+}
+.bookmark-container p span {
+  float: right;
+}
+.bookmark-container p {
+  margin: 0;
+  text-align: left;
+  padding: 0 10px;
+}
+.bookmark-details {
+  text-align: left;
+  padding: 10px;
+  display: flex;
+  margin-top: 20px;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.bookmark-details input {
+  width: 100%;
+  margin-left: 10px;
+  padding: 10px;
+  border: 2px solid #146ebe;
+  border-radius: 3px;
+  outline: none;
+}
+.bookmarks-buttons {
+  text-align: left;
+  padding: 10px;
+  padding-bottom: 0;
+}
+.bookmarks-buttons button {
+  border-radius: 5px;
+  min-width: 100px;
+  font-size: 14px;
+}
+.active-bookmark-popup .bookmark i{
+  color: #146ebe;
+}
+.bookmarks-buttons .button-primary {
+    background-color: #146ebe;
+    color: #fff
+}
+.active-share-popup .share-popup,
+.active-bookmark-popup .bookmark-popup {
+  min-width: 350px;
+  height: auto;
+  opacity: 1;
+  z-index: 1;
 }
 @media only screen and (max-width: 767px){
   /* .chrome-tab-content-section{
