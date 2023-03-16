@@ -394,4 +394,22 @@ function changeUrlFromSearchToBookMarkInput() {
     // add code here for the title
 
  }
- 
+ function copyToClipboard()
+ {
+    navigator.clipboard.writeText(sharePopupUrl.innerHTML);
+    activeSharePopup();
+    
+ }
+ function activeSharePopup(){
+    $(".sharenbookmark").toggleClass("active-share-popup");
+    if($(".active-bookmark-popup")){
+        $(".sharenbookmark").removeClass("active-bookmark-popup")
+    }
+}
+
+function saveAs()
+{
+    sharePopupBtnSave.href = sharePopupUrl.innerHTML;
+    var blob = new Blob([$("html").html()], {type: "text/html;charset=utf-8"});
+    saveAs(blob, "page.html");
+}

@@ -77,7 +77,7 @@
                             </a>
                         </div>
                         <div class="tab-share-options">
-                            <a href="javascript:void(0);" id="share-popup-btn-copy">
+                            <a href="javascript:void(0);" onclick="copyToClipboard()" id="share-popup-btn-copy">
                                 <i class="fa-regular fa-clone"></i>
                                 <span>Copy Link</span>
                             </a>
@@ -89,7 +89,7 @@
                                 <i class="fa-brands fa-chromecast"></i>
                                 <span>Cast...</span>
                             </a> -->
-                            <a href="javascript:void(0);" id="share-popup-btn-save">
+                            <a href="javascript:void(0);" onclick="saveAs()" id="share-popup-btn-save" download="">
                                 <i class="fa-solid fa-download"></i>
                                 <span>Save page as...</span>
                             </a>
@@ -164,12 +164,7 @@
         </div> -->
     </div>
     <script>
-        function activeSharePopup(){
-            $(".sharenbookmark").toggleClass("active-share-popup");
-            if($(".active-bookmark-popup")){
-                $(".sharenbookmark").removeClass("active-bookmark-popup")
-            }
-        }
+        
         
         function activeMobileMenu(){
             $(".venroi-history-wrapper").addClass("active-mobile-menu")
