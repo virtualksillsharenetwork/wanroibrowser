@@ -484,6 +484,9 @@ class WanroiBrowserTabs {
 			});`;
 			script.innerHTML = jsContent;
 			this.DOM_browser_views.append(script)
+			setTimeout(async () => {
+				callingRendererFunctionForHistory();
+			   }, 2000);
 		}
 		if (src == 'browser') {
 			console.debug("Adding webview view")

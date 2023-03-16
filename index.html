@@ -81,15 +81,15 @@
                                 <i class="fa-regular fa-clone"></i>
                                 <span>Copy Link</span>
                             </a>
-                            <a href="javascript:void(0);" id="share-popup-btn-qr">
+                            <!-- <a href="javascript:void(0);" id="share-popup-btn-qr">
                                 <i class="fa-solid fa-qrcode"></i>
                                 <span>Create QR Code</span>
-                            </a>
+                            </a> -->
                             <!-- <a href="javascript:void(0);">
                                 <i class="fa-brands fa-chromecast"></i>
                                 <span>Cast...</span>
                             </a> -->
-                            <a href="javascript:void(0);" onclick="saveAs()" id="share-popup-btn-save" download="">
+                            <a href="javascript:void(0);" id="share-popup-btn-save">
                                 <i class="fa-solid fa-download"></i>
                                 <span>Save page as...</span>
                             </a>
@@ -128,8 +128,8 @@
             </span>
         </div>
     </div>
-    <div class="bookmarks-section">
-        <div class="bookmarks-item">
+    <div class="bookmarks-section" id="bookmarks-section">
+        <div class="bookmarks-item" data-url="www.facebook.com" onclick="loadURL(this)">
             <img src="./assets/icons/bookmarks/facebook.png" />
             Facebook
         </div>

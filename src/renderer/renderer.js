@@ -1,4 +1,3 @@
-
 let activeWebView = undefined;
 
 loadstart = () => {
@@ -13,6 +12,11 @@ did_finish_load = () => {
     else
         $('#mainSearch').val(window.activeWebView.getURL());
 }
+
+ 
+  document.addEventListener("DOMContentLoaded", () => {
+    refreshBookMarkSection();
+  });
 
 if(typeof incognito == 'undefined')
     browserTabManager.addTab("New Tab", "", "browser",false);
@@ -36,14 +40,14 @@ function searchURL(url) {
         var correctURL = helper.correctURL(url);
         activeWebView.loadURL(correctURL);
         var d = new Date();
-       // console.log(addHistoryJson(correctURL,d));
+        console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
 
         bookmarkCheck(activeWebView)
     }
     else {
         activeWebView.loadURL(`https://search.wanroi.com/web?q=${url}`);
-        //console.log(addHistoryJson(correctURL,d));
+        console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
 
         bookmarkCheck(activeWebView)
@@ -298,12 +302,55 @@ function refreshBookMarkSection()
 {
     let dataFromFile = fs.readFileSync('bookmark.json');
     var jsonObj = JSON.parse(dataFromFile);
-    divBookmarkSection.innerHTML = '';
+    //divBookmarkSection.innerHTML = '';
     for (let i = 0; i < jsonObj.table.length; i++) {
-        divBookmarkSection.append(''+jsonObj.table[i].url); 
+        var url = jsonObj.table[i].url;
+        var domain = helper.getDomain(url);
+        var str = domain;
+        var end = str.lastIndexOf('.');
+         
+        divBookmarkSection.innerHTML +='<div class="bookmarks-item" data-url="'+url+
+        '" onclick="loadURL(this)">'+
+        '<img src="https://s2.googleusercontent.com/s2/favicons?domain_url='+url+'" alt="./assets/icons/bookmarks/page-64.png" />'+
+        str.substring(0, end)+'</div>'; 
     }
 }
-
+function callingRendererFunctionForHistory()
+{
+    let dataFromFile = fs.readFileSync('history.json');
+    var jsonObj = JSON.parse(dataFromFile);
+    //containerHistoryCard.innerHTML = '';
+    for (let i = 0; i < jsonObj.table.length; i++) {
+        var url = jsonObj.table[i].url;
+        var domain = helper.getDomain(url);
+        var str = domain;
+        var end = str.lastIndexOf('.');
+         
+        containerHistoryCard.innerHTML +='<div class="history-card">'+
+   '     <h5>'+jsonObj.table[i].time+'</h5>'+
+   '     <div class="history-item">'+
+   '         <div class="check-time">'+
+   '             <span class="checkbox">'+
+   '                 <label class="checkbox-container">'+
+   '                     <input type="checkbox" checked="checked">'+
+   '                     <span class="checkmark"></span>'+
+   '                   </label>'+
+   '             </span>'+
+   '             <span class="tiem">'+jsonObj.table[i].time+'</span>'+
+   '         </div>'+
+   '         <div class="fav-title">'+
+   '             <span class="favicon"><img src="https://s2.googleusercontent.com/s2/favicons?domain_url='+url+' alt="./assets/icons/venroi.png" /></span>'+
+   '             <span class="title"><a href="javascript:void(0)">'+str.substring(0, end)+'</a></span>'+
+   '             <span class="url">'+url+'</span>'+
+   '         </div>'+
+   '         <div class="options">'+
+   '             <span class="options-popup"><i class="fa-solid fa-ellipsis"></i></span>'+
+   '         </div>'+
+   '     </div>'+
+   ' </div>'; 
+    }
+    
+}
 
 function addHistoryJson(url,time)
 {
@@ -315,16 +362,15 @@ var obj = {"url":url,"time":time};
 
 var existUrl = false;
 for (let i = 0; i < jsonObj.table.length; i++) {
-    var seconds = (time.getTime() - jsonObj.table[i].time.getTime()) / 1000;
-    if(!(url == jsonObj.table[i].url && seconds <= 1000))
-    {
-        existUrl = true;
-    }
+    if(url == jsonObj.table[i].url && jsonObj.table[i].time == time)
+   {
+       existUrl = true;
+   }
   }
   if(existUrl)
   {return "This url already exists in history.";}
   
-  jsonObj.table.push(obj);
+jsonObj.table.push(obj);
 
 var jsonContent = JSON.stringify(jsonObj);
  
@@ -387,6 +433,10 @@ function changeUrlFromSearchToBookMarkInput() {
    function changeSharePopupData() {
     sharePopupUrl.innerHTML = inputBookmarkWindow.value;
     sharePopupImg.src = 'https://s2.googleusercontent.com/s2/favicons?domain_url='+inputBookmarkWindow.value;
+    var domain = helper.getDomain(inputBookmarkWindow.value);
+    var str = domain;
+    var end = str.lastIndexOf('.');
+    sharePopupName.innerHTML = str.substring(0, end).toUpperCase();
     // letdomain = inputBookmarkWindow.value.replace('www.','');
     // const myArray = domain.split(".");
     // let word = myArray[0];
@@ -412,4 +462,9 @@ function saveAs()
     sharePopupBtnSave.href = sharePopupUrl.innerHTML;
     var blob = new Blob([$("html").html()], {type: "text/html;charset=utf-8"});
     saveAs(blob, "page.html");
+}
+
+function loadURL(element)
+{
+    
 }
