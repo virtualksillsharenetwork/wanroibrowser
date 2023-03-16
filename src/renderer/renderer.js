@@ -38,11 +38,15 @@ function searchURL(url) {
         var d = new Date();
        // console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
+
+        bookmarkCheck(activeWebView)
     }
     else {
         activeWebView.loadURL(`https://search.wanroi.com/web?q=${url}`);
         //console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
+
+        bookmarkCheck(activeWebView)
     }
 }
 
@@ -72,6 +76,7 @@ function reloadAndRefreshSearch(activeWebView) {
    }
    fadeForwardBackward(activeWebView);
    bookmarkCheck(activeWebView);
+  
 }
 // document.querySelector('button[data-theme-toggle]').addEventListener('click', _ => {
 //     if (el.classList.contains('chrome-tabs-dark-theme')) {
@@ -171,7 +176,7 @@ function changeUrlOnActiveWebViewChange() {
 mainBookmark.addEventListener("click", e => {
     activeBookmarkPopup();
     mainBookmark.innerHTML =  '<i class="fa-solid fa-star" style="color: #1A73E8;"></i>';
-    console.log(addBookMarkJson(getUrlFromSearchToBookMarkInput()))
+    console.log(addBookMarkJson(changeUrlFromSearchToBookMarkInput()))
     //saveBookMarkJson(); getBookMarkJsonArray()
    // console.log(getBookMarkJsonArray());
    // console.log(addBookMarkJson("https://search.hahahahahahahah.com/"));
@@ -339,7 +344,7 @@ function activeBookmarkPopup(){
     }
 }
 
-function getUrlFromSearchToBookMarkInput() {
+function changeUrlFromSearchToBookMarkInput() {
    if(mainSearch.value == "")
     {
         inputBookmarkWindow.value = "https://search.wanroi.com/";
@@ -375,6 +380,18 @@ function getUrlFromSearchToBookMarkInput() {
         else{
             mainBookmark.innerHTML =  '<i class="fa-sharp fa-regular fa-star"></i>';
         }
-        getUrlFromSearchToBookMarkInput();
+        changeUrlFromSearchToBookMarkInput();
+        changeSharePopupData();
         
   }
+   function changeSharePopupData() {
+    sharePopupUrl.innerHTML = inputBookmarkWindow.value;
+    sharePopupImg.src = 'https://s2.googleusercontent.com/s2/favicons?domain_url='+inputBookmarkWindow.value;
+    // letdomain = inputBookmarkWindow.value.replace('www.','');
+    // const myArray = domain.split(".");
+    // let word = myArray[0];
+    // sharePopupName.innerHTML = word.toUpperCase();
+    // add code here for the title
+
+ }
+ 

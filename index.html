@@ -65,26 +65,31 @@
                 <div class="share-popup">
                     <div class="popupr-container">
                         <div class="current-tab-info">
-                            <img src="./assets/icons/venroi.png" alt="current tab favicon" />
+                            <img src="./assets/icons/venroi.png" id="share-popup-img" width="25px" alt="current tab favicon" />
                             <a href="current-url">
-                                <span>Wanroi.com</span>
-                                <span>https://search.venroi.com</span>
+                                <span id="share-popup-name">Wanroi.com</span>
+                                <span id="share-popup-url" style=" 
+                                    text-overflow: ellipsis;
+                                    overflow: hidden; 
+                                    width: 260px; 
+                                   
+                                    white-space: nowrap;">https://search.venroi.com</span>
                             </a>
                         </div>
                         <div class="tab-share-options">
-                            <a href="javascript:void(0);">
+                            <a href="javascript:void(0);" id="share-popup-btn-copy">
                                 <i class="fa-regular fa-clone"></i>
                                 <span>Copy Link</span>
                             </a>
-                            <a href="javascript:void(0);">
+                            <a href="javascript:void(0);" id="share-popup-btn-qr">
                                 <i class="fa-solid fa-qrcode"></i>
                                 <span>Create QR Code</span>
                             </a>
-                            <a href="javascript:void(0);">
+                            <!-- <a href="javascript:void(0);">
                                 <i class="fa-brands fa-chromecast"></i>
                                 <span>Cast...</span>
-                            </a>
-                            <a href="javascript:void(0);">
+                            </a> -->
+                            <a href="javascript:void(0);" id="share-popup-btn-save">
                                 <i class="fa-solid fa-download"></i>
                                 <span>Save page as...</span>
                             </a>
