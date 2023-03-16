@@ -61,7 +61,7 @@
             <input id="mainSearch" type="text" class="" placeholder="Search Wanroi or type a URL" />
             <div class="sharenbookmark">
                 <span class="share" onclick="activeSharePopup();"><i class="fa-sharp fa-regular fa-share-from-square"></i></span>
-                <span class="bookmark" onclick="activeBookmarkPopup();" id="mainBookmark"><i class="fa-sharp fa-regular fa-star"></i></span>
+                <span class="bookmark" id="mainBookmark"><i class="fa-sharp fa-regular fa-star"></i></span>
                 <div class="share-popup">
                     <div class="popupr-container">
                         <div class="current-tab-info">
@@ -96,11 +96,11 @@
                         <p>Bookmark added <span onclick="activeBookmarkPopup();"><i class="fa-solid fa-xmark"></i></span></p>
                         <div class="bookmark-details">
                             <label>Name</label>
-                            <input type="text" value="venroi.com" />
+                            <input type="text" id="input-bookmark-window" value="" />
                         </div>
                         <div class="bookmarks-buttons">
                             <button onclick="activeBookmarkPopup();" class="button button-primary">Done</button>
-                            <button>Remove</button>
+                            <button id="remove-bookmark-button">Remove</button>
                         </div>
                     </div>
                 </div>
@@ -165,12 +165,7 @@
                 $(".sharenbookmark").removeClass("active-bookmark-popup")
             }
         }
-        function activeBookmarkPopup(){
-            $(".sharenbookmark").toggleClass("active-bookmark-popup");
-            if($(".active-share-popup")){
-                $(".sharenbookmark").removeClass("active-share-popup")
-            }
-        }
+        
         function activeMobileMenu(){
             $(".venroi-history-wrapper").addClass("active-mobile-menu")
         }

@@ -36,14 +36,14 @@ function searchURL(url) {
         var correctURL = helper.correctURL(url);
         activeWebView.loadURL(correctURL);
         var d = new Date();
-        console.log(addHistoryJson(correctURL,d));
+       // console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
     }
     else {
         activeWebView.loadURL(`https://search.wanroi.com/web?q=${url}`);
-        console.log(addHistoryJson(correctURL,d));
+        //console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
-}
+    }
 }
 
 function openCustomTab(tabName) {
@@ -71,6 +71,7 @@ function reloadAndRefreshSearch(activeWebView) {
         mainSearch.value = "";
    }
    fadeForwardBackward(activeWebView);
+   bookmarkCheck(activeWebView);
 }
 // document.querySelector('button[data-theme-toggle]').addEventListener('click', _ => {
 //     if (el.classList.contains('chrome-tabs-dark-theme')) {
@@ -162,40 +163,46 @@ function fadeForwardBackward(activeWebView) {
     }
 }
 function changeUrlOnActiveWebViewChange() { 
-   
+
     activeWebView =  helper.getActiveWebView();
     reloadAndRefreshSearch(activeWebView);
 }
 
 mainBookmark.addEventListener("click", e => {
+    activeBookmarkPopup();
+    mainBookmark.innerHTML =  '<i class="fa-solid fa-star" style="color: #1A73E8;"></i>';
+    console.log(addBookMarkJson(getUrlFromSearchToBookMarkInput()))
     //saveBookMarkJson(); getBookMarkJsonArray()
-    console.log(getBookMarkJsonArray());
+   // console.log(getBookMarkJsonArray());
    // console.log(addBookMarkJson("https://search.hahahahahahahah.com/"));
  });
+ removeBookmarkButton.addEventListener("click", e => {
+        console.log(removeBookMarkJson(inputBookmarkWindow.value));
+   });
 
-function saveBookMarkJson()
-{
-// json data
-var jsonData = '{"table": [{"url": "https://search.wanroi2.com/"},{"url": "https://search.wanroi3.com/web?q=fb"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://www.facebook.com/"}]}';
+// function saveBookMarkJson()
+// {
+// // json data
+// var jsonData = '{"table": [{"url": "https://search.wanroi2.com/"},{"url": "https://search.wanroi3.com/web?q=fb"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://search.wanroi.com/"},{"url": "https://www.facebook.com/"}]}';
  
-// parse json
-var jsonObj = JSON.parse(jsonData);
-console.log(jsonObj);
+// // parse json
+// var jsonObj = JSON.parse(jsonData);
+// console.log(jsonObj);
  
-// stringify JSON Object
-var jsonContent = JSON.stringify(jsonObj);
-console.log(jsonContent);
+// // stringify JSON Object
+// var jsonContent = JSON.stringify(jsonObj);
+// console.log(jsonContent);
  
-fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
-    if (err) {
-        console.log("An error occured while writing JSON Object to File.");
-        return console.log(err);
-    }
+// fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
+//     if (err) {
+//         console.log("An error occured while writing JSON Object to File.");
+//         return console.log(err);
+//     }
  
-    console.log("JSON file has been saved.");
-});
+//     console.log("JSON file has been saved.");
+// });
 
-}
+// }
 
 
 function addBookMarkJson(url)
@@ -217,7 +224,6 @@ var existUrl = false;
 for (let i = 0; i < jsonObj.table.length; i++) {
     if(url == jsonObj.table[i].url)
     {
-     
         existUrl = true;
     }
   }
@@ -240,6 +246,40 @@ fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
 return "Bookmark URL has been added.";
 }
 
+function removeBookMarkJson(url)
+{
+   
+    let dataFromFile = fs.readFileSync('bookmark.json');
+    var jsonObj = JSON.parse(dataFromFile);
+    var obj = {"url":url};
+    var existUrl = false;
+    for (let i = 0; i < jsonObj.table.length; i++) {
+        if(url == jsonObj.table[i].url)
+        {
+            existUrl = true;
+        }
+    }
+    if(existUrl)
+    {
+        jsonObj.table = jsonObj.table.filter(obj => obj.url != url);
+    }
+    else
+    { return "Bookmark Not Found"}
+   
+    var jsonContent = JSON.stringify(jsonObj);
+    //console.log(jsonContent);
+    
+    fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
+        if (err) {
+            return "An error occured while writing JSON Object to File.";
+        }
+        mainBookmark.innerHTML =  '<i class="fa-sharp fa-regular fa-star"></i>';
+        return "Removed Bookmark successfully";
+    });
+    mainBookmark.innerHTML =  '<i class="fa-sharp fa-regular fa-star"></i>';
+    return "Removed Bookmark successfully";
+}
+
 
 
 function getBookMarkJsonArray()
@@ -257,7 +297,6 @@ function refreshBookMarkSection()
     for (let i = 0; i < jsonObj.table.length; i++) {
         divBookmarkSection.append(''+jsonObj.table[i].url); 
     }
-    //divBookmarkSection
 }
 
 
@@ -292,3 +331,50 @@ fs.writeFile("history.json", jsonContent, 'utf8', function (err) {
 });
 return "History URL has been added.";
 }
+
+function activeBookmarkPopup(){
+    $(".sharenbookmark").toggleClass("active-bookmark-popup");
+    if($(".active-share-popup")){
+        $(".sharenbookmark").removeClass("active-share-popup")
+    }
+}
+
+function getUrlFromSearchToBookMarkInput() {
+   if(mainSearch.value == "")
+    {
+        inputBookmarkWindow.value = "https://search.wanroi.com/";
+    }
+    else 
+    {
+        if (helper.validURL(mainSearch.value)) {
+            inputBookmarkWindow.value = mainSearch.value;
+        }
+        else {
+            inputBookmarkWindow.value = `https://search.wanroi.com/web?q=${mainSearch.value}`;
+        }
+    }
+    return inputBookmarkWindow.value;
+ }
+
+ function bookmarkCheck(activeWebView) {
+     var url = activeWebView.getURL();
+        let dataFromFile = fs.readFileSync('bookmark.json');
+        var jsonObj = JSON.parse(dataFromFile);
+       
+        var existUrl = false;
+        for (let i = 0; i < jsonObj.table.length; i++) {
+            if(url == jsonObj.table[i].url)
+            {
+                existUrl = true;
+            }
+        }
+        if(existUrl)
+        {
+            mainBookmark.innerHTML =  '<i class="fa-solid fa-star" style="color: #1A73E8;"></i>';
+        }
+        else{
+            mainBookmark.innerHTML =  '<i class="fa-sharp fa-regular fa-star"></i>';
+        }
+        getUrlFromSearchToBookMarkInput();
+        
+  }

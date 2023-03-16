@@ -13,4 +13,6 @@ const mainFarward = document.getElementById("main-farward-btn");
 const mainSearch = document.getElementById("mainSearch");
 const mainBookmark = document.getElementById("mainBookmark");
 const divBookmarkSection = document.getElementById("bookmarks-section");
+const inputBookmarkWindow = document.getElementById("input-bookmark-window");
+const removeBookmarkButton = document.getElementById("remove-bookmark-button");
 // const openIncognitoButton = document.getElementById("open-incognito-window");
