@@ -177,6 +177,7 @@
   border: 1px solid transparent;
   border-radius: 50px;
   transition: all ease-out .2s;
+  display: none !important;
 }
 .chrome-user {
   display: flex;
@@ -184,11 +185,8 @@
   border-radius: 50px;
   transition: all ease-out .2s;
 }
-.chrome-menu svg {
-  display: flex;
-  align-items: center;
-  height: 16px;
-  width: 16px;
+.chrome-menu {
+  padding: 0 10px;
 }
 .chrome-user svg{
   height: 22px;

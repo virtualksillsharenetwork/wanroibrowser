@@ -200,6 +200,30 @@ html, body {
 .history-item .options {
   flex: 1;
   justify-content: flex-end;
+  position: relative;
+}
+.history-action-popup {
+  position: absolute;
+  bottom: -40px;
+  background-color: #fff;
+  border: 1px solid #dedede;
+  border-radius: 5px;
+  z-index: 5;
+  display: none;
+}
+.show-history-options .history-action-popup{
+  display: block;
+}
+.history-action-popup a {
+  color: #000;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 8px 30px;
+  display: block;
+}
+.history-action-popup a:hover {
+  background-color: #dedede;
 }
 .fav-title .title a {
   text-decoration: none;

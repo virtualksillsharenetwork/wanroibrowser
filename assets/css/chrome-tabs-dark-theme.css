@@ -44,7 +44,8 @@
 }
 .bookmarks-section {
   background-color: #323639;
-  color: white
+  color: white;
+  border-color: #323639;
 }
 .bookmarks-section .bookmarks-item:hover{
   background-color: #4a4d51;
@@ -67,6 +68,10 @@
 .global_search .info:hover,
 .sharenbookmark span:hover{
   background-color: #454649;
+  color: #fff;
+}
+.icons-section .reload{
+  color: #fff;
 }
 .icons-section img:hover {
   background: #454649;
@@ -105,9 +110,6 @@
 }
 .add-new-chrome-tab svg {
   color: #D6D7D7;
-}
-.icons-section i:hover {
-  background: #27282b;
 }
 
 .incognito-pic {
