@@ -2,7 +2,12 @@ ipcRenderer.on(`history-clicked`, function (e, args) {
     browserTabManager.addTab("History", "", "history");
 });
 ipcRenderer.on(`new-tab`, function (e, args) {
-    browserTabManager.addTab("New Tab", "", "browser");
+    if(args.incognito){
+        browserTabManager.addTab("New Tab", "../../assets/icons/tab-favicon.png", "browser",true);
+    }
+    else{
+        browserTabManager.addTab("New Tab", "./assets/icons/tab-favicon.png", "browser",false);
+    }
 });
 ipcRenderer.on(`incognito-window`, function (e, args) {
     ipcRenderer.send(`open-incognito-window`);    

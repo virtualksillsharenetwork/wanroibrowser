@@ -10,7 +10,7 @@ function getMenuTemplate(menu,webContents){
       {
         label: "New tab",
         click() {
-          webContents.send(`new-tab`, {});
+          webContents.send(`new-tab`, {incognito:false});
         }
       },
       {
@@ -26,9 +26,6 @@ function getMenuTemplate(menu,webContents){
         }
       },
       {
-        label: "Downloads",
-      },
-      {
         label: "Bookmarks",
       },
     ];
@@ -38,11 +35,8 @@ function getMenuTemplate(menu,webContents){
       {
         label: "New tab",
         click() {
-          webContents.send(`new-tab`, {});
+          webContents.send(`new-tab`, {incognito:true});
         }
-      },
-      {
-        label: "Downloads",
       },
       {
         label: "Bookmarks",

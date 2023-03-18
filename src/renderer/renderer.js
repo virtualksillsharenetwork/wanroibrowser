@@ -1,5 +1,23 @@
 let activeWebView = undefined;
 
+    if(!fs.existsSync(path.join(__dirname, '/../../history.json'))){
+        try {
+            const content = '{"table":[]}';
+            fs.writeFileSync('history.json', content);
+            // file written successfully
+          } catch (err) {
+            console.error(err);
+          }
+    }
+    if(!fs.existsSync(path.join(__dirname, '/../../bookmark.json'))){
+        try {
+            const content = '{"table":[]}';
+            fs.writeFileSync('bookmark.json', content);
+            // file written successfully
+          } catch (err) {
+            console.error(err);
+          }
+    }
 loadstart = () => {
     console.log('loading...');
 }
@@ -7,10 +25,15 @@ loadstop = () => {
     console.log('done');
 }
 did_finish_load = () => {
-    if (typeof window.activeWebView === 'undefined')
+    if (typeof activeWebView === 'undefined')
         return;
     else
-        $('#mainSearch').val(window.activeWebView.getURL());
+        $('#mainSearch').val(activeWebView.getURL());
+
+        browserTabManager.updateTab(browserTabManager.getCurrent().activeTab,{favicon:"https://s2.googleusercontent.com/s2/favicons?domain_url="+activeWebView.getURL()+""});
+}
+page_favicon_updated = (res) => {
+    console.log(res.favicons)
 }
 
  
@@ -18,14 +41,28 @@ did_finish_load = () => {
     refreshBookMarkSection();
   });
 
-if(typeof incognito == 'undefined')
-    browserTabManager.addTab("New Tab", "", "browser",false);
-else
-    browserTabManager.addTab("New Tab", "", "browser",incognito);
+    if(typeof incognito == 'undefined')
+    {
+        browserTabManager.addTab("New Tab", "./assets/icons/venroi.png", "browser",false);
+        $('.chrome-tab-favicon').attr('hidden',false);
+    }
+    else{
+        browserTabManager.addTab("New Tab", "../../assets/icons/venroi.png", "browser",incognito);
+        $('.chrome-tab-favicon').attr('hidden',false);
+    }
+    
 
 
 $('#add-tab').on('click', function () {
-    browserTabManager.addTab("New Tab", "", "browser");
+    if(typeof incognito == 'undefined')
+    {
+        browserTabManager.addTab("New Tab", "./assets/icons/tab-favicon.png", "browser",false);
+        //$('.chrome-tab-favicon').attr('hidden',false);
+    }
+    else{
+        browserTabManager.addTab("New Tab", "../../assets/icons/tab-favicon.png", "browser",incognito);
+        //$('.chrome-tab-favicon').attr('hidden',false);
+    }
 });
 
 $('#mainSearch').on('keydown', function (event) {
@@ -42,14 +79,12 @@ function searchURL(url) {
         var d = new Date();
         console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
-
         bookmarkCheck(activeWebView)
     }
     else {
         activeWebView.loadURL(`https://search.wanroi.com/web?q=${url}`);
         console.log(addHistoryJson(correctURL,d));
         loading(activeWebView);
-
         bookmarkCheck(activeWebView)
     }
 }
@@ -173,8 +208,14 @@ function fadeForwardBackward(activeWebView) {
 }
 function changeUrlOnActiveWebViewChange() { 
 
-    activeWebView =  helper.getActiveWebView();
-    reloadAndRefreshSearch(activeWebView);
+    try{
+        activeWebView =  helper.getActiveWebView();
+        reloadAndRefreshSearch(activeWebView);
+    }
+    catch(e){
+        callingRendererFunctionForHistory();
+    }
+    
 }
 
 mainBookmark.addEventListener("click", e => {
@@ -250,9 +291,12 @@ fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
     if (err) {
         return "An error occured while writing JSON Object to File.";
     }
+    refreshBookMarkSection()
     return "Bookmark URL has been added.";
 });
+refreshBookMarkSection()
 return "Bookmark URL has been added.";
+
 }
 
 function removeBookMarkJson(url)
@@ -302,7 +346,7 @@ function refreshBookMarkSection()
 {
     let dataFromFile = fs.readFileSync('bookmark.json');
     var jsonObj = JSON.parse(dataFromFile);
-    //divBookmarkSection.innerHTML = '';
+    divBookmarkSection.innerHTML = '';
     for (let i = 0; i < jsonObj.table.length; i++) {
         var url = jsonObj.table[i].url;
         var domain = helper.getDomain(url);
@@ -317,9 +361,10 @@ function refreshBookMarkSection()
 }
 function callingRendererFunctionForHistory()
 {
+    const containerHistoryCard = document.getElementById("tabs-content-container-for-history-card");
     let dataFromFile = fs.readFileSync('history.json');
     var jsonObj = JSON.parse(dataFromFile);
-    //containerHistoryCard.innerHTML = '';
+    containerHistoryCard.innerHTML = '';
     for (let i = 0; i < jsonObj.table.length; i++) {
         var url = jsonObj.table[i].url;
         var domain = helper.getDomain(url);
@@ -354,7 +399,8 @@ function callingRendererFunctionForHistory()
 
 function addHistoryJson(url,time)
 {
-let dataFromFile = fs.readFileSync('history.json');
+    
+let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../history.json'));
 
 var jsonObj = JSON.parse(dataFromFile);
 var obj = {"url":url,"time":time};
@@ -409,7 +455,7 @@ function changeUrlFromSearchToBookMarkInput() {
 
  function bookmarkCheck(activeWebView) {
      var url = activeWebView.getURL();
-        let dataFromFile = fs.readFileSync('bookmark.json');
+        let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../bookmark.json'));
         var jsonObj = JSON.parse(dataFromFile);
        
         var existUrl = false;

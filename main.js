@@ -14,7 +14,7 @@ function createWindow(winTit,loadFile) {
         height: 600,
         webviewTag: true,
         frame: false,
-        icon: path.join(__dirname, "/assets/icons/venroi.png"),
+        icon: path.join(__dirname, "/assets/icons/wanroi512Round.png"),
         center: true,
         minHeight: 600,
         minWidth: 800,
@@ -31,10 +31,10 @@ function createWindow(winTit,loadFile) {
     window.removeMenu(true);
     window.loadFile(loadFile);
     window.webContents.openDevTools();
-    // window.webContents.session.clearCache(() => {
-    //     window.webContents.session.clearStorageData()
-    //     alert('cache is cleared')
-    //    })
+    window.webContents.session.clearCache(() => {
+        window.webContents.session.clearStorageData()
+        alert('cache is cleared')
+       })
     let menu = null;
     if(window.name == 'main'){
         menu = Menu.buildFromTemplate(getMenuTemplate('mainMenu',window.webContents));

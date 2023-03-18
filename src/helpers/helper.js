@@ -20,7 +20,6 @@ class Helper {
         }
         return urlPreString;
     }
-
     getActiveWebView() {
         var activeWebView = $('.tab-content .selected webview')[0].id;
         return window[activeWebView];

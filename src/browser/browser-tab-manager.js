@@ -1,7 +1,6 @@
 const path = require('path');
 const fs = require('fs');
 
-var history_file = path.join(__dirname, "/history.json");
 let instanceId = 0
 
 const Draggabilly = require('draggabilly')
@@ -145,7 +144,7 @@ class ChromeTabs {
 		this.styleEl.innerHTML = styleHTML
 	}
 
-	createNewTabEl() {
+	createNewTabEl(tabPositions) {
 		const div = document.createElement('div')
 		div.innerHTML = `
 		<div class="chrome-tab">
@@ -161,10 +160,11 @@ class ChromeTabs {
 		  </div>
 		</div>`;
 		return div.firstElementChild
+		// <img src="${tabPositions.favicon}" style="height:18px;width:25px;"></img>
 	}
 
 	addTab(tabProperties, { animate = true, background = false } = {}) {
-		const tabEl = this.createNewTabEl()
+		const tabEl = this.createNewTabEl(tabProperties)
 
 		if (animate) {
 			tabEl.classList.add(`${TAB_CLASS}-was-just-added`)
@@ -456,7 +456,6 @@ class WanroiBrowserTabs {
 
 	addTab(title, favicon="", src=undefined,incognito=false) {
 		let child = undefined;
-		console.log(src)
 		if(src == 'history'){
 			const content = fs.readFileSync(path.join(__dirname, "/src/pages/history.html"),'utf8');
 			child = document.createElement("div");
@@ -546,6 +545,10 @@ class WanroiBrowserTabs {
 
 	showTabsBar() {
 		document.getElementById("eb-tabs-bar").style.display = "block";
+	}
+
+	updateTab(tabEl,tabProperties){
+		chromeTabs.updateTab(tabEl, tabProperties)
 	}
 	
 }

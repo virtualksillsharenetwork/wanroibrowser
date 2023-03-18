@@ -21,5 +21,4 @@ const sharePopupUrl = document.getElementById("share-popup-url");
 //const sharePopupBtnCopy = document.getElementById("share-popup-btn-copy");
 const sharePopupBtnQr = document.getElementById("share-popup-btn-qr");
 const sharePopupBtnSave = document.getElementById("share-popup-btn-save");
-const containerHistoryCard = document.getElementById("tabs-content-container-for-history-card");
 // const openIncognitoButton = document.getElementById("open-incognito-window");
