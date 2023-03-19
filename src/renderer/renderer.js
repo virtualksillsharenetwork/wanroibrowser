@@ -1,4 +1,22 @@
 let activeWebView = undefined;
+if (!fs.existsSync(path.join(__dirname, '/../../history.json'))) {
+    try {
+        const content = '{"table":[]}';
+        fs.writeFileSync(path.join(__dirname, '/../../history.json'), content);
+        // file written successfully
+    } catch (err) {
+        console.error(err);
+    }
+}
+if (!fs.existsSync(path.join(__dirname, '/../../bookmark.json'))) {
+    try {
+        const content = '{"table":[{"url": "https://search.wanroi.com/"}]}';
+        fs.writeFileSync(path.join(__dirname, '/../../bookmark.json'), content);
+        // file written successfully
+    } catch (err) {
+        console.error(err);
+    }
+}
 
 loadstart = () => {
     console.log('loading...');
@@ -12,7 +30,7 @@ did_finish_load = () => {
     else
         $('#mainSearch').val(activeWebView.getURL());
 
-    browserTabManager.updateTab(browserTabManager.getCurrent().activeTab, { favicon: "https://s2.googleusercontent.com/s2/favicons?domain_url=" + activeWebView.getURL() + "" });
+    browserTabManager.updateTab(browserTabManager.getCurrent().activeTab, { favicon: "https://s2.googleusercontent.com/s2/favicons?domain_url=" + activeWebView.getURL() + "",title:activeWebView.getTitle() });
 }
 page_favicon_updated = (res) => {
     console.log(res.favicons)
@@ -239,7 +257,7 @@ removeBookmarkButton.addEventListener("click", e => {
 
 function addBookMarkJson(url) {
     //read File
-    let dataFromFile = fs.readFileSync('bookmark.json');
+    let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../bookmark.json'));
     //var jsonData = JSON.parse(dataFromFile);
     //console.log(jsonData);
     // json data
@@ -266,7 +284,7 @@ function addBookMarkJson(url) {
     var jsonContent = JSON.stringify(jsonObj);
     //console.log(jsonContent);
 
-    fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
+    fs.writeFile(path.join(__dirname, "/../../bookmark.json"), jsonContent, 'utf8', function (err) {
         if (err) {
             return "An error occured while writing JSON Object to File.";
         }
@@ -280,7 +298,7 @@ function addBookMarkJson(url) {
 
 function removeBookMarkJson(url) {
 
-    let dataFromFile = fs.readFileSync('bookmark.json');
+    let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../bookmark.json'));
     var jsonObj = JSON.parse(dataFromFile);
     var obj = { "url": url };
     var existUrl = false;
@@ -297,7 +315,7 @@ function removeBookMarkJson(url) {
     var jsonContent = JSON.stringify(jsonObj);
     //console.log(jsonContent);
 
-    fs.writeFile("bookmark.json", jsonContent, 'utf8', function (err) {
+    fs.writeFile(path.join(__dirname, "/../../bookmark.json"), jsonContent, 'utf8', function (err) {
         if (err) {
             return "An error occured while writing JSON Object to File.";
         }
@@ -311,13 +329,13 @@ function removeBookMarkJson(url) {
 
 
 function getBookMarkJsonArray() {
-    let dataFromFile = fs.readFileSync('bookmark.json');
+    let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../bookmark.json'));
     var jsonObj = JSON.parse(dataFromFile);
     return jsonObj
 }
 
 function refreshBookMarkSection() {
-    let dataFromFile = fs.readFileSync('bookmark.json');
+    let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../bookmark.json'));
     var jsonObj = JSON.parse(dataFromFile);
     divBookmarkSection.innerHTML = '';
     for (let i = 0; i < jsonObj.table.length; i++) {
@@ -334,7 +352,7 @@ function refreshBookMarkSection() {
 }
 function callingRendererFunctionForBookmarks(){
     const containerHistoryCard = document.getElementById("tabs-content-container-for-bookmark-items");
-    let dataFromFile = fs.readFileSync('bookmark.json');
+    let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../bookmark.json'));
     var jsonObj = JSON.parse(dataFromFile);
     containerHistoryCard.innerHTML = '';
     for (let i = 0; i < jsonObj.table.length; i++) {
@@ -361,7 +379,7 @@ function callingRendererFunctionForBookmarks(){
 }
 function callingRendererFunctionForHistory() {
     const containerHistoryCard = document.getElementById("tabs-content-container-for-history-card");
-    let dataFromFile = fs.readFileSync('history.json');
+    let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../history.json'));
     var jsonObj = JSON.parse(dataFromFile);
     containerHistoryCard.innerHTML = '';
     for (let i = 0; i < jsonObj.table.length; i++) {
@@ -420,7 +438,7 @@ function addHistoryJson(url, time) {
 
     var jsonContent = JSON.stringify(jsonObj);
 
-    fs.writeFile("history.json", jsonContent, 'utf8', function (err) {
+    fs.writeFile(path.join(__dirname, "/../../history.json"), jsonContent, 'utf8', function (err) {
         if (err) {
             return "An error occured while writing JSON Object to File.";
         }

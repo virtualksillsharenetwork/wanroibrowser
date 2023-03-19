@@ -130,29 +130,9 @@
         </div>
     </div>
     <div class="bookmarks-section" id="bookmarks-section">
-        <div class="bookmarks-item" data-url="www.facebook.com" onclick="loadURL(this)">
-            <img src="./assets/icons/bookmarks/facebook.png" />
-            Facebook
-        </div>
-        <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/youtube.png" />
-            Youtube
-        </div>
-        <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/instagram.png" />
-            Instagram
-        </div>
-        <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/twitter.png" />
-            Twitter
-        </div>
-        <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/whatsapp.png" />
-            Whatsapp
-        </div>
-        <div class="bookmarks-item">
-            <img src="./assets/icons/bookmarks/linkedin.png" />
-            Linkedin
+        <div class="bookmarks-item" data-url="search.wanroi.com" onclick="loadURL(this)">
+            <img src="./assets/icons/venroi.png" />
+            Wanroi
         </div>
     </div>
     <!-- <button id="open-incognito-window" onclick="openIncognitoButton()">open-incognito-window</button> -->
@@ -166,18 +146,48 @@
     </div>
     <script>
         
+        function deleteAllHistory(elm){
+            try {
+                const content = '{"table":[]}';
+                fs.writeFileSync(path.join(__dirname, 'history.json'), content);
+                // file written successfully
+            } catch (err) {
+                console.error(err);
+            }
+        }
         function deleteHistoryItem(elm){
-            console.log(elm.dataset);
+            let dataFromFile = fs.readFileSync(path.join(__dirname, 'history.json'));
+            var jsonObj = JSON.parse(dataFromFile);
+            for (let i = 0; i < jsonObj.table.length; i++) {
+                if (elm.dataset.url == jsonObj.table[i].url && elm.dataset.time == jsonObj.table[i].time) {
+                    delete jsonObj.table[i];
+                }
+            }
+            var jsonContent = JSON.stringify(jsonObj);
+
+            fs.writeFile(path.join(__dirname, "history.json"), jsonContent, 'utf8', function (err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                }
+                //console.log("History URL has been added.");
+            });
         }
         function deleteBookmarkItem(elm){
-            let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../history.json'));
-
+            let dataFromFile = fs.readFileSync(path.join(__dirname, 'bookmark.json'));
             var jsonObj = JSON.parse(dataFromFile);
             for (let i = 0; i < jsonObj.table.length; i++) {
                 if (elm.dataset.url == jsonObj.table[i].url) {
                     delete jsonObj.table[i];
                 }
             }
+            var jsonContent = JSON.stringify(jsonObj);
+
+            fs.writeFile(path.join(__dirname, "bookmark.json"), jsonContent, 'utf8', function (err) {
+                if (err) {
+                    console.log("An error occured while writing JSON Object to File.");
+                }
+                //console.log("History URL has been added.");
+            });
         }
         function showBookmarkOption(elm){
             $(elm).parent().toggleClass('show-history-options');

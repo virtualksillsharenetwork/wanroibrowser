@@ -43,6 +43,9 @@ function getMenuTemplate(menu,webContents){
       },
       {
         label: "Bookmarks",
+        click() {
+          webContents.send(`bookmark-clicked`, {});
+        }
       },
     ];
   }
