@@ -30,7 +30,7 @@ function createWindow(winTit,loadFile) {
     remote.enable(window.webContents)
     window.removeMenu(true);
     window.loadFile(loadFile);
-    window.webContents.openDevTools();
+    //window.webContents.openDevTools();
     window.webContents.session.clearCache(() => {
         window.webContents.session.clearStorageData()
         alert('cache is cleared')
