@@ -388,8 +388,8 @@ function callingRendererFunctionForHistory() {
             '             <span class="url">' + url + '</span>' +
             '         </div>' +
             '         <div class="options">' +
-            '             <span class="options-popup" onclick="showHistoryOption(this);"><i class="fa-solid fa-ellipsis"></i></span>' +
-            '                <div class="history-action-popup">' +
+            '             <span class="options-popup dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa-solid fa-ellipsis"></i></span>' +
+            '                <div class="history-action-popup dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">' +
             '                    <div class="history-popup-container">' +
             '                        <a href="javascript:void(9);" data-url="'+url+'" data-time="'+jsonObj.table[i].time+'" onclick="deleteHistoryItem(this);">Delete</a>' +
             '                    </div>' +

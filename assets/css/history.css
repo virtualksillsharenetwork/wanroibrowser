@@ -203,15 +203,18 @@ html, body {
   position: relative;
 }
 .history-action-popup {
-  position: absolute;
   bottom: -40px;
   background-color: #fff;
   border: 1px solid #dedede;
   border-radius: 5px;
   z-index: 5;
   display: none;
+  min-width: 200px;
+  transform: none !important;
+  left: auto !important;
+  top: auto !important;
 }
-.show-history-options .history-action-popup{
+.options.show .history-action-popup{
   display: block;
 }
 .history-action-popup a {
