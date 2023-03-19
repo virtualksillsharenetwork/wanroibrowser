@@ -4,10 +4,32 @@ const { app, ipcMain,Menu, BrowserWindow } = require('electron')
 const {getMenuTemplate} = require('./src/menus/menu-templates')
 const path = require('path');
 require('./env');
+const fs = require('fs');
 
 let allWindows = new Set();
 
 
+function checkJsonFiles(){
+    if (!fs.existsSync(path.join(__dirname, 'history.json'))) {
+        try {
+            const content = '{"table":[]}';
+            fs.writeFileSync('history.json', content);
+            // file written successfully
+        } catch (err) {
+            console.error(err);
+        }
+    }
+    if (!fs.existsSync(path.join(__dirname, 'bookmark.json'))) {
+        try {
+            const content = '{"table":[{"url": "https://search.wanroi.com/"}]}';
+            fs.writeFileSync('bookmark.json', content);
+            // file written successfully
+        } catch (err) {
+            console.error(err);
+        }
+    }
+}
+checkJsonFiles();
 function createWindow(winTit,loadFile) {
     let window = new BrowserWindow({
         width: 800,

@@ -165,7 +165,23 @@
     </div>
     <script>
         
+        function deleteHistoryItem(elm){
+            console.log(elm.dataset);
+        }
+        function deleteBookmarkItem(elm){
+            let dataFromFile = fs.readFileSync(path.join(__dirname, '/../../history.json'));
+
+            var jsonObj = JSON.parse(dataFromFile);
+            for (let i = 0; i < jsonObj.table.length; i++) {
+                if (elm.dataset.url == jsonObj.table[i].url) {
+                    delete jsonObj.table[i];
+                }
+            }
+        }
         function showHistoryOption(elm){
+            $(elm).parent().toggleClass('show-history-options');
+        }
+        function showBookmarkOption(elm){
             $(elm).parent().toggleClass('show-history-options');
         }
         function activeMobileMenu(){
