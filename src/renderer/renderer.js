@@ -18,6 +18,24 @@ if (!fs.existsSync(path.join(__dirname, '/../../bookmark.json'))) {
     }
 }
 
+    if(!fs.existsSync(path.join(__dirname, '/../../history.json'))){
+        try {
+            const content = '{"table":[]}';
+            fs.writeFileSync('history.json', content);
+            // file written successfully
+          } catch (err) {
+            console.error(err);
+          }
+    }
+    if(!fs.existsSync(path.join(__dirname, '/../../bookmark.json'))){
+        try {
+            const content = '{"table":[]}';
+            fs.writeFileSync('bookmark.json', content);
+            // file written successfully
+          } catch (err) {
+            console.error(err);
+          }
+    }
 loadstart = () => {
     console.log('loading...');
 }
